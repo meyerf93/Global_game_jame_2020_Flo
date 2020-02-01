@@ -18,9 +18,6 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
-
-
-
         Controls = new InputMaster();
         Controls.Player.Fire.performed += _ => shoot();
         Controls.Player.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
@@ -51,15 +48,12 @@ public class Player : MonoBehaviour
 
 
 
-
-
-
-
-    public void Move(float move_x, float mvoe_y)
+    public void Move(float move_x, float move_y)
     {
+        Debug.Log("make move x :" + move_x + " y : " + move_y);
 
         // Move the character by finding the target velocity
-        Vector3 targetVelocity = new Vector2(move_x, mvoe_y);
+        Vector3 targetVelocity = new Vector2(move_x, move_y);
         // And then smoothing it out and applying it to the character
         m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity*moveSpeed, ref m_Velocity, m_MovementSmoothing);
 
