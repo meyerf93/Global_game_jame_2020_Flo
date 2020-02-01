@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 9106833104522821991}
   - component: {fileID: 3422152507545449831}
   m_Layer: 0
-  m_Name: "Cre\u0301er"
+  m_Name: Creer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

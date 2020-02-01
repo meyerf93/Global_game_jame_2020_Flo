@@ -697,7 +697,7 @@ PrefabInstance:
     - target: {fileID: 3315494824486825462, guid: 9f06ea2e919f54fdfbdf09204cc2d107,
         type: 3}
       propertyPath: m_Name
-      value: Canvas Game Over
+      value: CanvasGameOver
       objectReference: {fileID: 0}
     - target: {fileID: 6853024460157587844, guid: 9f06ea2e919f54fdfbdf09204cc2d107,
         type: 3}

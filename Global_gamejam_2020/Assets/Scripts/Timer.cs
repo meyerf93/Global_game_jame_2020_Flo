@@ -8,6 +8,8 @@ public class Timer : MonoBehaviour
     float currentTime = 0f;
     public Text textBox;
 
+    GameSession gameSession;
+
     public string FormatTime(float time)
     {
         int minutes = (int)time / 60;
@@ -17,11 +19,33 @@ public class Timer : MonoBehaviour
     }
     void Start()
     {
-        textBox.text = FormatTime(currentTime);
+        textBox = GetComponent<Text>();
+        gameSession = FindObjectOfType<GameSession>();
     }
     private void Update()
     {
         currentTime += Time.deltaTime;
-        textBox.text = FormatTime(currentTime);
+        //textBox.text = FormatTime(currentTime);
+        //textBox.text = gameSession.FormatTime();
     }
 }
+
+//public class ScoreDisplay : MonoBehaviour
+//{
+
+//    Text scoreText;
+//    GameSession gameSession;
+
+//    private void Start()
+//    {
+//        scoreText = GetComponent<Text>();
+//        gameSession = FindObjectOfType<GameSession>();
+//    }
+
+//    private void Update()
+//    {
+//        scoreText.text = gameSession.GetScore().ToString();
+//        // c'est un int qu'on convertit pour texte.
+//    }
+
+//}
