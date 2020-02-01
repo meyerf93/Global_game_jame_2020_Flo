@@ -656,6 +656,31 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 454097847584106827, guid: c6a46a4a9481543938556e561b249f14,
         type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2568277205464536674, guid: 7e8a58905ff0c49ea9d7181a15b594fa,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3656604973160624242, guid: 7e8a58905ff0c49ea9d7181a15b594fa,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1746489366}
+    - target: {fileID: 3963829724939604269, guid: 7e8a58905ff0c49ea9d7181a15b594fa,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1746489366}
+    - target: {fileID: 4187669054168916868, guid: 7e8a58905ff0c49ea9d7181a15b594fa,
+        type: 3}
+      propertyPath: m_Name
+      value: CanvasStart
+      objectReference: {fileID: 0}
+    - target: {fileID: 5439213507042985180, guid: 7e8a58905ff0c49ea9d7181a15b594fa,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
