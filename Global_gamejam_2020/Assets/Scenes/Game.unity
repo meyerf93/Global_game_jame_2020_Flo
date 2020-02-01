@@ -835,6 +835,11 @@ PrefabInstance:
       propertyPath: boundsBox
       value: 
       objectReference: {fileID: 30332817}
+    - target: {fileID: 8875195132114775964, guid: cebd8faa2c07ec646be6c55329fef6e5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8875195132114775966, guid: cebd8faa2c07ec646be6c55329fef6e5,
         type: 3}
       propertyPath: m_Name
