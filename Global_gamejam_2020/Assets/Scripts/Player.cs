@@ -2,10 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Logic.World;
 public class Player : MonoBehaviour
 {
     public Cauldron cauldron;
     public float moveSpeed;
+
+    public GameObject prefab_leaf;
+    public GameObject prefab_stone;
+    public GameObject prefab_water;
+
+    public GameObject display_ressource;
+
 
     InputMaster Controls;
     private string conlision_tag_etected;
@@ -14,6 +22,8 @@ public class Player : MonoBehaviour
     private Rigidbody2D m_Rigidbody2D;
     private BoxCollider2D m_boxCollider2D;
     private Vector3 m_Velocity = Vector3.zero;
+
+    private GameObject colision_ressource;
     private bool m_FacingRight = false;  // For determining which way the player is currently facing.
     [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  // How much to smooth out the movement
 
@@ -24,10 +34,8 @@ public class Player : MonoBehaviour
         Controls = new InputMaster();
 
         conlision_tag_etected = "None";
-        Controls.Player.Take_ressource.performed += _ => Take_ressource();
         Controls.Player.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
         Controls.Player.Move.canceled += ctx => move = Vector2.zero;
-        Controls.Player.Drop_chaudron.performed += _ => add_ingredient();
 
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -37,14 +45,19 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.tag == "Ressource")
         {
+            Controls.Player.Take_ressource.performed += _ => Take_ressource();
+
             //If the GameObject's name matches the one you suggest, output this message in the console
-            Debug.Log("It's Ressource");
+            //bug.Log("It's Ressource");
+            colision_ressource = collision.gameObject;
             conlision_tag_etected = "Ressource";
         }
         else if (collision.gameObject.tag == "cauldron_triger")
         {
+            Controls.Player.Take_ressource.performed += _ => add_ingredient();
+
             //If the GameObject has the same tag as specified, output this message in the console
-            Debug.Log("It's cauldron_triger");
+            //bug.Log("It's cauldron_triger");
             //cauldron.AddedIngredients()
             conlision_tag_etected = "cauldron_triger";
         }
@@ -61,7 +74,30 @@ public class Player : MonoBehaviour
         if (conlision_tag_etected == "Ressource")
         {
             //If the GameObject's name matches the one you suggest, output this message in the console
-             Debug.Log("Take ressource");
+            Debug.Log("Take ressource");
+            Resource temp_ressource = colision_ressource.GetComponent<Resource>();
+            display_prefab(temp_ressource.type);
+            Destroy(colision_ressource);
+        }
+    }
+
+    void display_prefab(ResourceType ressource)
+    {
+        GameObject prefab_ressource = new GameObject();
+        switch (ressource)
+        {
+            case ResourceType.LEAF:
+                prefab_ressource = Instantiate(prefab_leaf, new Vector3(0, 0, 0), Quaternion.identity);
+                display_ressource = prefab_ressource;
+                break;
+            case ResourceType.STONE:
+                prefab_ressource = Instantiate(prefab_stone, new Vector3(0, 0, 0), Quaternion.identity);
+                display_ressource = prefab_ressource;
+                break;
+            case ResourceType.WATER:
+                prefab_ressource = Instantiate(prefab_water, new Vector3(0, 0, 0), Quaternion.identity);
+                display_ressource = prefab_ressource;
+                break;
         }
     }
 

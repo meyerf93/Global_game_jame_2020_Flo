@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4784660131293709659}
   - component: {fileID: 4784660131293709656}
   - component: {fileID: 4784660131293709657}
+  - component: {fileID: 8307089627569311530}
   m_Layer: 0
   m_Name: leaf_pixel
   m_TagString: Ressource
@@ -134,3 +135,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.32, y: 0.32}
   m_EdgeRadius: 0
+--- !u!114 &8307089627569311530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4784660131293709654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59d455649d4272b4d8d7b3b29b8ee55b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 2
