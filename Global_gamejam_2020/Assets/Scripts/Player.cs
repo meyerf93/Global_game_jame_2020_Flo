@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
-
+    public Cauldron cauldron;
     public float moveSpeed;
 
     InputMaster Controls;
@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     Vector2 move;
     private Rigidbody2D m_Rigidbody2D;
     private Vector3 m_Velocity = Vector3.zero;
-    private bool m_FacingRight = true;  // For determining which way the player is currently facing.
+    private bool m_FacingRight = false;  // For determining which way the player is currently facing.
     [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  // How much to smooth out the movement
 
     private void Awake()
@@ -22,12 +22,19 @@ public class Player : MonoBehaviour
         Controls.Player.Fire.performed += _ => shoot();
         Controls.Player.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
         Controls.Player.Move.canceled += ctx => move = Vector2.zero;
+        Controls.Player.Drop_chaudron.performed += _ => add_ingredient();
 
     }
 
     void shoot()
     {
         Debug.Log("fire");
+    }
+
+    void add_ingredient()
+    {
+        Debug.Log("add super amaizin ingredient");
+        //cauldron.AddedIngredients()
     }
 
 
@@ -50,7 +57,7 @@ public class Player : MonoBehaviour
 
     public void Move(float move_x, float move_y)
     {
-        Debug.Log("make move x :" + move_x + " y : " + move_y);
+        //Debug.Log("make move x :" + move_x + " y : " + move_y);
 
         // Move the character by finding the target velocity
         Vector3 targetVelocity = new Vector2(move_x, move_y);
