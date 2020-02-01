@@ -1,9 +1,7 @@
-namespace ClassLibrary1
+
+public enum ResourceId
 {
-    public enum ResourceId
-    {
-        Resource1,
-        Resource2,
-        Resource3
-    }
+    Resource1,
+    Resource2,
+    Resource3
 }

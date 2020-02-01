@@ -1,7 +1,5 @@
-namespace ClassLibrary1
+
+public class Resource
 {
-    public class Resource
-    {
-        
-    }
+
 }

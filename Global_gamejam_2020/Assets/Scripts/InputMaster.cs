@@ -289,7 +289,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""path"": ""<XInputController>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""XR"",
                     ""action"": ""Drop_chaudron"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false

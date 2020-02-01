@@ -1,8 +1,6 @@
-namespace ClassLibrary1
+
+public class Monster : Creature
 {
-    public class Monster : Creature
-    {
-        public void Destroy()
-        {}
-    }
+    public void Destroy()
+    {}
 }

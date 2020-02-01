@@ -1,10 +1,11 @@
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-namespace ClassLibrary1
+public class BodyPart : MonoBehaviour
 {
-    public class BodyPart
+    public BodyPart()
     {
-        public BodyPart()
-        {}
+
     }
 }

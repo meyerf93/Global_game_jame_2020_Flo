@@ -1,28 +1,33 @@
-namespace ClassLibrary1
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+public class Creature : MonoBehaviour
 {
-    public class Creature
+    private const int maximum_moves = 3;
+    private int _remaining_action;
+    public Creature()
     {
-        private const int maximum_moves = 3;
-        private int _remaining_moves;
-        public Creature()
-        {
-            _remaining_moves = maximum_moves;
-        }
-
-        protected void MakeMove()
-        {
-            _remaining_moves--;
-            if (_remaining_moves == 0)
-            {
-                Die();
-            }
-        }
-        
-        public void Die()
-        {}
-        
-        public void GoTo(int X, int Y)
-        {}
-        
+        _remaining_action = maximum_moves;
     }
+
+    protected void MakeAction()
+    {
+        _remaining_action--;
+        if (_remaining_action == 0)
+        {
+            Die();
+        }
+    }
+        
+    public void Die()
+    {
+        //animation ... 
+        Destroy(gameObject);
+    }
+        
+    public void GoTo(int X, int Y)
+    {
+
+    }
+        
 }

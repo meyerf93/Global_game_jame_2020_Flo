@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
-
+    public Cauldron cauldron;
     public float moveSpeed;
 
     InputMaster Controls;
@@ -22,12 +22,19 @@ public class Player : MonoBehaviour
         Controls.Player.Fire.performed += _ => shoot();
         Controls.Player.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
         Controls.Player.Move.canceled += ctx => move = Vector2.zero;
+        Controls.Player.Drop_chaudron.performed += _ => add_ingredient();
 
     }
 
     void shoot()
     {
         Debug.Log("fire");
+    }
+
+    void add_ingredient()
+    {
+        Debug.Log("add super amaizin ingredient");
+        //cauldron.AddedIngredients()
     }
 
 
@@ -50,7 +57,7 @@ public class Player : MonoBehaviour
 
     public void Move(float move_x, float move_y)
     {
-        Debug.Log("make move x :" + move_x + " y : " + move_y);
+        //Debug.Log("make move x :" + move_x + " y : " + move_y);
 
         // Move the character by finding the target velocity
         Vector3 targetVelocity = new Vector2(move_x, move_y);
