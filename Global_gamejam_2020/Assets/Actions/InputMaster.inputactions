@@ -22,10 +22,18 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Fire",
+                    "name": "Take_ressource",
                     "type": "Button",
                     "id": "9c761f5e-efc2-415d-83eb-4de84c84bb08",
                     "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Drop_chaudron",
+                    "type": "Button",
+                    "id": "e65df4fd-6760-41f6-a9b2-fc281435dd58",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
                 }
@@ -214,7 +222,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Fire",
+                    "action": "Take_ressource",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -225,7 +233,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Fire",
+                    "action": "Take_ressource",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -236,7 +244,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Touch",
-                    "action": "Fire",
+                    "action": "Take_ressource",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -247,7 +255,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Joystick",
-                    "action": "Fire",
+                    "action": "Take_ressource",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -258,7 +266,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "XR",
-                    "action": "Fire",
+                    "action": "Take_ressource",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "aad7c52f-b605-4722-8058-ae616da6829c",
+                    "path": "<XInputController>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "XR",
+                    "action": "Drop_chaudron",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
