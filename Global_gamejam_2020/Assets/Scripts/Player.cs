@@ -42,7 +42,8 @@ public class Player : MonoBehaviour
         Controls.Player.Move.canceled += ctx => move = Vector2.zero;
         Controls.Player.Take_ressource.performed += _ => add_ingredient();
 
-        Controls.Player.Cook_part.performed += _ => cook_part();
+        Controls.Player.Cook_part.performed += _ => CookBodyPart();
+        Controls.Player.AssembleBodyParts.performed += _ => AssembleBodyParts();
 
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -81,8 +82,6 @@ public class Player : MonoBehaviour
     {
         if (conlision_tag_etected == "Ressource")
         {
-            Debug.Log("1");
-
             Resource temp_ressource = colision_ressource.GetComponent<Resource>();
 
             if (temp_ressource.grounded == true)
@@ -113,7 +112,6 @@ public class Player : MonoBehaviour
             }
             else
             {
-                Debug.Log("2");
                 Resource temp_ressource = display_ressource.GetComponent<Resource>();
                 SpriteRenderer temp_sprite = display_ressource.GetComponent<SpriteRenderer>();
                 GameObject temp_gameobj;
@@ -175,12 +173,19 @@ public class Player : MonoBehaviour
 
     }
 
-    void cook_part()
+    void CookBodyPart()
     {
         if (conlision_tag_etected == "cauldron_triger")
         {
-            Debug.Log("call the logger");
             cauldron.CookBodyPart();
+        }
+    }
+
+    void AssembleBodyParts()
+    {
+        if (conlision_tag_etected == "cauldron_triger")
+        {
+            cauldron.AssembleAngel();
         }
     }
 

@@ -36,6 +36,14 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "AssembleBodyParts",
+                    "type": "Button",
+                    "id": "8fd19593-2489-42a8-8dbc-2b88b6f2de34",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -289,6 +297,28 @@
                     "processors": "",
                     "groups": "XR",
                     "action": "Cook_part",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "297bc604-2a29-473a-b54f-751b73c3cdcf",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cook_part",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b013a7d6-8d71-449d-815a-ee691f747c2b",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AssembleBodyParts",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
