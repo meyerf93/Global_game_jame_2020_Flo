@@ -49,6 +49,14 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""AssembleBodyParts"",
+                    ""type"": ""Button"",
+                    ""id"": ""8fd19593-2489-42a8-8dbc-2b88b6f2de34"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -302,6 +310,28 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""XR"",
                     ""action"": ""Cook_part"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""297bc604-2a29-473a-b54f-751b73c3cdcf"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cook_part"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b013a7d6-8d71-449d-815a-ee691f747c2b"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AssembleBodyParts"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -880,6 +910,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Take_ressource = m_Player.FindAction("Take_ressource", throwIfNotFound: true);
         m_Player_Cook_part = m_Player.FindAction("Cook_part", throwIfNotFound: true);
+        m_Player_AssembleBodyParts = m_Player.FindAction("AssembleBodyParts", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -946,6 +977,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Take_ressource;
     private readonly InputAction m_Player_Cook_part;
+    private readonly InputAction m_Player_AssembleBodyParts;
     public struct PlayerActions
     {
         private @InputMaster m_Wrapper;
@@ -954,6 +986,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Take_ressource => m_Wrapper.m_Player_Take_ressource;
         public InputAction @Cook_part => m_Wrapper.m_Player_Cook_part;
+        public InputAction @AssembleBodyParts => m_Wrapper.m_Player_AssembleBodyParts;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -975,6 +1008,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Cook_part.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCook_part;
                 @Cook_part.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCook_part;
                 @Cook_part.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCook_part;
+                @AssembleBodyParts.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAssembleBodyParts;
+                @AssembleBodyParts.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAssembleBodyParts;
+                @AssembleBodyParts.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAssembleBodyParts;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -991,6 +1027,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Cook_part.started += instance.OnCook_part;
                 @Cook_part.performed += instance.OnCook_part;
                 @Cook_part.canceled += instance.OnCook_part;
+                @AssembleBodyParts.started += instance.OnAssembleBodyParts;
+                @AssembleBodyParts.performed += instance.OnAssembleBodyParts;
+                @AssembleBodyParts.canceled += instance.OnAssembleBodyParts;
             }
         }
     }
@@ -1159,6 +1198,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnTake_ressource(InputAction.CallbackContext context);
         void OnCook_part(InputAction.CallbackContext context);
+        void OnAssembleBodyParts(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

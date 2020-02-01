@@ -13,39 +13,10 @@ namespace Logic.Creatures.Parts
         // une créature (angel) associée, et des actions à réaliser (qui seront additionnées
         // lorsque la créature sera assemblée.
 
-        public int[] _angelPartCounter = { };
-        public int[] _actionsCounter = { };
-
-
-        public int max_parts_amount = 27;
-        
-        // private List<AngelType> angelTypes = new List<AngelType>
-        // {
-        //     AngelType.Fairy,
-        //     AngelType.Treant,
-        //     AngelType.Nayade
-        // };
-        
-        private List<BuildingType> actionsList = new List<BuildingType>
-        {
-            BuildingType.Pound,
-            BuildingType.Rock,
-            BuildingType.Tree
-        };
+        public int[] _angelPartCounter = new int[9];
+        public int[] _actionsCounter = new int[3];
         
         private List<BodyPart> listOfParts;
-        
-        // public List<BodyPart> GetAllBodyParts()
-        // {
-        //     listOfParts.Clear();
-        //     for (int i = 0; i < max_parts_amount; i++)
-        //     {
-        //         var idx = i % 3;
-        //         listOfParts.Add(BuildBodyPart(angelTypes[idx], actionsList[idx]));
-        //     }
-        //
-        //     return listOfParts;
-        // }
 
         private BodyPart BuildBodyPart(AngelType type, BuildingType actions)
         {
@@ -94,7 +65,8 @@ namespace Logic.Creatures.Parts
                 minValue = _actionsCounter[i];
                 minIndex = i;
             }
-            _angelPartCounter[minIndex]++;
+            
+            _actionsCounter[minIndex]++;
 
             switch (minIndex)
             {
