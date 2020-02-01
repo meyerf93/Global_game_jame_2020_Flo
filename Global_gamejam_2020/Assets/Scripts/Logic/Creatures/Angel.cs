@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Logic.World;
@@ -9,17 +10,14 @@ public class Angel : Creature
     private HeadPart _head;
     private TorsoPart _torso;
     private LegPart _legs;
-    private List<BuildingType> _actionsList;
-
-    public Angel(HeadPart head, TorsoPart torso, LegPart legs)
+    private List<BuildingType> _actionsList = new List<BuildingType>();
+    
+    public void SetBodyParts(HeadPart head, TorsoPart torso, LegPart legs)
     {
         _head = head;
         _torso = torso;
         _legs = legs;
-
         BuildActionsList(head, torso, legs);
-
-        GoBuildStuff();
     }
 
     private void BuildActionsList(HeadPart head, TorsoPart torso, LegPart legs)
@@ -36,16 +34,14 @@ public class Angel : Creature
         }
     }
 
-    private void GoBuildStuff()
+    public void GoBuildStuff()
     {
         while (_actionsList.Any())
-        {
             ExecuteNextAction();
-        }
-
         Die();
     }
-    public new void ExecuteNextAction()
+
+    private new void ExecuteNextAction()
     {
         var nextBuilding = _actionsList[0];
         _actionsList.RemoveAt(0);

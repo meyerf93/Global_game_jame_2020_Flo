@@ -1,5 +1,5 @@
 
 public class HeadPart : BodyPart
 {
-        
+    
 }
