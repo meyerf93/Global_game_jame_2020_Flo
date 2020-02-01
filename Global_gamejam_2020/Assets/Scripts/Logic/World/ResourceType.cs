@@ -4,7 +4,6 @@ namespace Logic.World
     {
         WATER,
         STONE,
-        FIRE,
-        AIR
+        LEAF
     }
 }

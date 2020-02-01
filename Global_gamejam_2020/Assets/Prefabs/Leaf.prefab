@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 4784660131293709659}
   - component: {fileID: 4784660131293709656}
   - component: {fileID: 4784660131293709657}
+  - component: {fileID: 8307089627569311530}
   m_Layer: 0
-  m_Name: leaf_pixel
+  m_Name: Leaf
   m_TagString: Ressource
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,7 +71,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 85e0ff755c74249b080a4517a720f268, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -134,3 +135,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.32, y: 0.32}
   m_EdgeRadius: 0
+--- !u!114 &8307089627569311530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4784660131293709654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59d455649d4272b4d8d7b3b29b8ee55b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 2
+  grounded: 1
