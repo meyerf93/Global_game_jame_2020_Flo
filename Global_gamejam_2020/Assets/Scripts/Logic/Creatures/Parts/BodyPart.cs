@@ -9,7 +9,7 @@ public class BodyPart : MonoBehaviour
 {
     public AngelType angelType;
     public List<BuildingType> actionsList;
-
+    public Sprite ui;
     private void Awake()
     {
         

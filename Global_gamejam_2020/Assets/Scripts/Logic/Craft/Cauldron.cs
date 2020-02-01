@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 
 public class Cauldron : MonoBehaviour
 {
-    private RecipeManager _recipeManager;
+    public RecipeManager _recipeManager;
 
     public int max_ingredient = 3;
 
