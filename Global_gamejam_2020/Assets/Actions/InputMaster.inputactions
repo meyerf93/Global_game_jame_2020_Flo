@@ -30,9 +30,17 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Drop_chaudron",
+                    "name": "Cook_part",
                     "type": "Button",
                     "id": "e65df4fd-6760-41f6-a9b2-fc281435dd58",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "AssembleBodyParts",
+                    "type": "Button",
+                    "id": "8fd19593-2489-42a8-8dbc-2b88b6f2de34",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
@@ -288,7 +296,29 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "XR",
-                    "action": "Drop_chaudron",
+                    "action": "Cook_part",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "297bc604-2a29-473a-b54f-751b73c3cdcf",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cook_part",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b013a7d6-8d71-449d-815a-ee691f747c2b",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AssembleBodyParts",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

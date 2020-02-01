@@ -11,29 +11,50 @@ public class Cauldron : MonoBehaviour
 
     public int max_ingredient = 3;
         
-    private HeadPart CurrentHead { get; set; }
-    private TorsoPart CurrentTorso { get; set; }
-    private LegPart CurrentLeg { get; set; }
+    public HeadPart CurrentHead { get; set; }
+    public TorsoPart CurrentTorso { get; set; }
+    public LegPart CurrentLeg { get; set; }
 
     public List<ResourceType> addedResources = new List<ResourceType>();
 
     private void Awake()
     {
         _recipeManager = gameObject.AddComponent<RecipeManager>();
-
+        DepositResource(ResourceType.LEAF);
+        DepositResource(ResourceType.STONE);
+        DepositResource(ResourceType.WATER);
+        CookBodyPart();
+        
+        DepositResource(ResourceType.STONE);
+        DepositResource(ResourceType.STONE);
+        DepositResource(ResourceType.WATER);
+        CookBodyPart();
+        
+        DepositResource(ResourceType.WATER);
+        DepositResource(ResourceType.STONE);
+        DepositResource(ResourceType.WATER);
+        
+        
     }
     public void DepositResource(ResourceType newIngredient)
     {
         if (addedResources.Count < max_ingredient)
         {
             addedResources.Add(newIngredient);
+            display(newIngredient);
         }
         
         Debug.Log("New resource added to caldron!");
     }
+    void display(ResourceType newIngredient)
+    {
+        Debug.Log("upddate UI");
+    }
 
     public void CookBodyPart()
     {
+        Debug.Log("Try to cook part...");
+        
         if (addedResources.Count < 3) return;
         var part = _recipeManager.GetBodyPart(
             addedResources[0],
@@ -59,6 +80,7 @@ public class Cauldron : MonoBehaviour
 
     public void AssembleAngel()
     {
+        Debug.Log("Try to assemble angel...");
         if (CurrentHead == null || CurrentTorso == null || CurrentLeg == null) return;
         var newAngel = gameObject.AddComponent<Angel>();
         newAngel.SetBodyParts(CurrentHead, CurrentTorso, CurrentLeg);

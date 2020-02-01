@@ -8,12 +8,13 @@ namespace Logic.Craft
 {
     public class RecipeManager : MonoBehaviour
     {
-        private BodyPartsGenerator _bodyPartsGenerator;
+        public BodyPartsGenerator _bodyPartsGenerator;
 
-        private List<BodyPart> _partsToDiscover = new List<BodyPart>();
+        public List<BodyPart> _partsToDiscover = new List<BodyPart>();
 
         private void Awake()
         {
+            DiscoveredRecipes = new List<Recipe>();
             _bodyPartsGenerator = gameObject.AddComponent<BodyPartsGenerator>();
             Reset();
         }

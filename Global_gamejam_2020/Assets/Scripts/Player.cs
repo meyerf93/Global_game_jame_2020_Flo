@@ -42,6 +42,9 @@ public class Player : MonoBehaviour
         Controls.Player.Move.canceled += ctx => move = Vector2.zero;
         Controls.Player.Take_ressource.performed += _ => add_ingredient();
 
+        Controls.Player.Cook_part.performed += _ => CookBodyPart();
+        Controls.Player.AssembleBodyParts.performed += _ => AssembleBodyParts();
+
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -79,8 +82,6 @@ public class Player : MonoBehaviour
     {
         if (conlision_tag_etected == "Ressource")
         {
-            Debug.Log("1");
-
             Resource temp_ressource = colision_ressource.GetComponent<Resource>();
 
             if (temp_ressource.grounded == true)
@@ -93,39 +94,54 @@ public class Player : MonoBehaviour
         }
         else
         {
-            Debug.Log("2");
-            Resource temp_ressource = display_ressource.GetComponent<Resource>();
-            SpriteRenderer temp_sprite = display_ressource.GetComponent<SpriteRenderer>();
-            GameObject temp_gameobj;
-            Color temp_color = new Color(255, 255, 255, 0);
-            Transform parent = GetComponentInParent<Transform>();
-            if (temp_ressource.grounded == false)
+            if (conlision_tag_etected == "cauldron_triger")
             {
-                switch (temp_ressource.type)
+                //If the GameObject's name matches the one you suggest, output this message in the console
+                Debug.Log("add super amaizin ingredient");
+                Resource temp_ressource = display_ressource.GetComponent<Resource>();
+
+                cauldron.DepositResource(temp_ressource.type);
+
+                SpriteRenderer temp_sprite = display_ressource.GetComponent<SpriteRenderer>();
+                Color temp_color = new Color(255, 255, 255, 0);
+                if (temp_ressource.grounded == false)
                 {
-                    case ResourceType.LEAF:
-                        temp_gameobj = Instantiate(prefab_leaf, new Vector3(parent.position.x + 1, parent.position.y, parent.position.z), Quaternion.identity);
-                        break;
-                    case ResourceType.STONE:
-                        temp_gameobj = Instantiate(prefab_stone, new Vector3(parent.position.x + 1, parent.position.y, parent.position.z), Quaternion.identity);
-                        break;
-                    case ResourceType.WATER:
-                        temp_gameobj = Instantiate(prefab_water, new Vector3(parent.position.x + 1, parent.position.y, parent.position.z), Quaternion.identity);
-                        break;
+                    temp_sprite.color = temp_color;
+                    temp_ressource.grounded = true;
+                }
+            }
+            else
+            {
+                Resource temp_ressource = display_ressource.GetComponent<Resource>();
+                SpriteRenderer temp_sprite = display_ressource.GetComponent<SpriteRenderer>();
+                GameObject temp_gameobj;
+                Color temp_color = new Color(255, 255, 255, 0);
+                Transform parent = GetComponentInParent<Transform>();
+                if (temp_ressource.grounded == false)
+                {
+                    switch (temp_ressource.type)
+                    {
+                        case ResourceType.LEAF:
+                            temp_gameobj = Instantiate(prefab_leaf, new Vector3(parent.position.x + 1, parent.position.y, parent.position.z), Quaternion.identity);
+                            break;
+                        case ResourceType.STONE:
+                            temp_gameobj = Instantiate(prefab_stone, new Vector3(parent.position.x + 1, parent.position.y, parent.position.z), Quaternion.identity);
+                            break;
+                        case ResourceType.WATER:
+                            temp_gameobj = Instantiate(prefab_water, new Vector3(parent.position.x + 1, parent.position.y, parent.position.z), Quaternion.identity);
+                            break;
+
+                    }
+                    temp_sprite.color = temp_color;
+                    temp_ressource.grounded = true;
 
                 }
-                temp_sprite.color = temp_color;
-                temp_ressource.grounded = true;
-
             }
+
         }
         //Check for a match with the specific tag on any GameObject that collides with your GameObject
         //Check for a match with the specified name on any GameObject that collides with your GameObject
-        if (conlision_tag_etected == "cauldron_triger")
-        {
-            //If the GameObject's name matches the one you suggest, output this message in the console
-            Debug.Log("add super amaizin ingredient");
-        }
+
     }
 
     void display_prefab(ResourceType ressource)
@@ -155,6 +171,22 @@ public class Player : MonoBehaviour
         temp_sprite.color = temp_color;
         temp_ressource.grounded = false;
 
+    }
+
+    void CookBodyPart()
+    {
+        if (conlision_tag_etected == "cauldron_triger")
+        {
+            cauldron.CookBodyPart();
+        }
+    }
+
+    void AssembleBodyParts()
+    {
+        if (conlision_tag_etected == "cauldron_triger")
+        {
+            cauldron.AssembleAngel();
+        }
     }
 
     private void Update()
