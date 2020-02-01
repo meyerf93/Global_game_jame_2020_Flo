@@ -29,18 +29,19 @@ public class GameSession : MonoBehaviour
     {
         int minutes = (int)time / 60;
         int seconds = (int)time - 60 * minutes;
+        Debug.Log(string.Format("{0:00}:{1:00}", minutes, seconds));
         return string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
-    public void GetTime()
-    {
-        FormatTime(currentTime);
-    }
+    //public string GetTime()
+    //{
+    //    //FormatTime(currentTime);
+    //}
 
     public void Update()
     {
         currentTime += Time.deltaTime;
-        GetTime();
+        FormatTime(currentTime);
     }
 
     public void ResetGame()

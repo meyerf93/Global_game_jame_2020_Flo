@@ -26,7 +26,7 @@ public class Timer : MonoBehaviour
     {
         currentTime += Time.deltaTime;
         //textBox.text = FormatTime(currentTime);
-        //textBox.text = gameSession.FormatTime();
+        textBox.text = gameSession.FormatTime(currentTime);
     }
 }
 
