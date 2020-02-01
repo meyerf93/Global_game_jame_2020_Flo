@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Collections;
+using Logic.World;
 using UnityEngine;
 
 public class Cauldron : MonoBehaviour
@@ -12,14 +13,14 @@ public class Cauldron : MonoBehaviour
     private TorsoPart CurrentTorso { get; set; }
     private LegPart CurrentLeg { get; set; }
 
-    public List<ResourceId> AddedIngredients;
+    public List<ResourceType> AddedIngredients;
 
     private void Awake()
     {
         _recipeManager = new RecipeManager();
 
     }
-    public void AddIngredient(ResourceId newIngredient)
+    public void AddIngredient(ResourceType newIngredient)
     {
         if (AddedIngredients.Count < max_ingredient)
         {

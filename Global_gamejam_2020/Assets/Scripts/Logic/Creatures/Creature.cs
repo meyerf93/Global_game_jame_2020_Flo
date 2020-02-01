@@ -1,22 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Logic.World;
 using UnityEngine;
 public class Creature : MonoBehaviour
 {
-    private const int maximum_moves = 3;
-    private int _remaining_action;
+    private List<BuildingType> _remaining_action;
     public Creature()
     {
-        _remaining_action = maximum_moves;
     }
 
-    protected void MakeAction()
+    protected void ExecuteNextAction()
     {
-        _remaining_action--;
-        if (_remaining_action == 0)
-        {
-            Die();
-        }
+       
     }
         
     public void Die()
