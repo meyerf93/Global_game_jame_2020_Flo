@@ -1,7 +1,10 @@
+using System;
+using System.Collections.Generic;
 
+[Serializable]
 public class LegPart : BodyPart
 {
-        LegPart()
+    public LegPart()
         {
                 partType = "leg";
         }

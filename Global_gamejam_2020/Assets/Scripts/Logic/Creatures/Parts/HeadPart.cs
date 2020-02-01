@@ -1,7 +1,10 @@
+using System;
+using System.Collections.Generic;
 
+[Serializable]
 public class HeadPart : BodyPart
 {
-    HeadPart()
+    public HeadPart()
     {
         partType = "head";
     }

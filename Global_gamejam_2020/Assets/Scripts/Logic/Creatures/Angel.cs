@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using Logic.World;
 
+[Serializable]
 public class Angel : Creature
 {
-        
-    private HeadPart _head;
-    private TorsoPart _torso;
-    private LegPart _legs;
+
+    public HeadPart _head = new HeadPart();
+    public TorsoPart _torso = new TorsoPart();
+    public LegPart _legs = new LegPart();
     private List<BuildingType> _actionsList = new List<BuildingType>();
     
     public void SetBodyParts(HeadPart head, TorsoPart torso, LegPart legs)

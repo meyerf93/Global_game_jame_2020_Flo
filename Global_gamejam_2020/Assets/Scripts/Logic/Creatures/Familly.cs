@@ -1,13 +1,11 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Logic.Creatures
 {
     [Serializable]
-    public enum AngelType
+    public class Familly
     {
-        Treant,
-        Fairy,
-        Nayade
+        public Angel Angel;
     }
 }

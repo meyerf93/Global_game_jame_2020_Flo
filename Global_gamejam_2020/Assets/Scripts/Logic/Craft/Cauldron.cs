@@ -4,7 +4,7 @@ using Logic.Craft;
 using Logic.World;
 using UnityEngine;
 using UnityEngine.Serialization;
-
+using Logic.Creatures;
 public class Cauldron : MonoBehaviour
 {
     public RecipeManager _recipeManager;
@@ -23,11 +23,16 @@ public class Cauldron : MonoBehaviour
     public SpriteRenderer second_case;
     public SpriteRenderer third_case;
 
+    public SpriteRenderer head_case;
+    public SpriteRenderer body_case;
+    public SpriteRenderer foot_case;
 
+    public List<Familly> famillies_list = new List<Familly>();
     public List<ResourceType> addedResources = new List<ResourceType>();
 
     private void Awake()
     {
+        famillies_list = new List<Familly>();
         _recipeManager = gameObject.AddComponent<RecipeManager>();
         /*DepositResource(ResourceType.LEAF);
         DepositResource(ResourceType.STONE);
@@ -104,21 +109,20 @@ public class Cauldron : MonoBehaviour
     }
     public void CookBodyPart()
     {
-        Debug.Log("Try to cook part...");
         
         if (addedResources.Count < 3) return;
+        Debug.Log("Try to cook part...");
         var part = _recipeManager.GetBodyPart(
             addedResources[0],
             addedResources[1],
             addedResources[2]);
         addedResources.Clear();
-
+        hide_ui_resosurce();
         var headPart = part as HeadPart;
         if (headPart != null)
         {
             CurrentHead = headPart;
             Debug.Log("New head cooked!");
-            return;
         }
 
         var torsoPart = part as TorsoPart;
@@ -126,7 +130,6 @@ public class Cauldron : MonoBehaviour
         {
             CurrentTorso = (TorsoPart) part;
             Debug.Log("New torso cooked!");
-            return;
         }
 
         var legPart = part as LegPart;
@@ -134,12 +137,32 @@ public class Cauldron : MonoBehaviour
         {
             CurrentLeg = (LegPart) part;
             Debug.Log("New leg cooked!");
-            return;
         }
-        Debug.Log("New body part cooked!");
-        hide_ui_resosurce();
+        display_part_body(CurrentLeg);
 
         //set the ui and the sprit from list part.ui = ,,,
+    }
+
+    private void display_part_body(BodyPart bodypart)
+    {
+        Color temp = new Color(255, 255, 255, 255);
+
+        switch (bodypart.partType)
+        {
+            case "head":
+                head_case.sprite = bodypart.ui;
+                head_case.color = temp;
+                break;
+            case "torso":
+                body_case.sprite = bodypart.ui;
+                body_case.color = temp;
+                break;
+            case "leg":
+                foot_case.sprite = bodypart.ui;
+                foot_case.color = temp;
+                break;
+        }
+
     }
 
     public void AssembleAngel()

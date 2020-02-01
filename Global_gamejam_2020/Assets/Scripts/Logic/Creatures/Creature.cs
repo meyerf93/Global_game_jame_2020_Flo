@@ -4,7 +4,7 @@ using Logic.World;
 using UnityEngine;
 public class Creature : MonoBehaviour
 {
-    private List<BuildingType> _remaining_action;
+    private List<BuildingType> _remaining_action = new List<BuildingType>();
     public Creature()
     {
     }

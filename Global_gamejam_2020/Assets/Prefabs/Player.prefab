@@ -143,7 +143,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a13f4de848fbb714fa46d58ed2811789, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cauldron: {fileID: 0}
+  cauldron: {fileID: 6380596994112488744, guid: b46890964f1f74a4fb27d07d285dd7fe,
+    type: 3}
   moveSpeed: 10
   prefab_leaf: {fileID: 4784660131293709654, guid: 2c4444355f8cba0419506305a7528e53,
     type: 3}
@@ -151,9 +152,11 @@ MonoBehaviour:
     type: 3}
   prefab_water: {fileID: 8895015622967595317, guid: 611794bab261b304196bd30b5cfeb9cd,
     type: 3}
+  worldMap: {fileID: 2436377410204819762, guid: e456b094b556e426297bc4fa7cc68ae2,
+    type: 3}
   leaf: {fileID: 21300000, guid: 85e0ff755c74249b080a4517a720f268, type: 3}
   stone: {fileID: 21300000, guid: ee7e97abb8424475298bd7b8a0da5897, type: 3}
-  water: {fileID: 21300000, guid: 469f26adbbee34ee6911d2926f82d731, type: 3}
+  water: {fileID: 21300000, guid: d91ab7dad6557473587c8cd684ffdc3d, type: 3}
   display_ressource: {fileID: 474125346}
   m_MovementSmoothing: 0.05
 --- !u!114 &2417511322051303893
