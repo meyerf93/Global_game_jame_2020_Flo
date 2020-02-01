@@ -25,12 +25,12 @@ public class Cauldron : MonoBehaviour
         DepositResource(ResourceType.WATER);
         CookBodyPart();
         
-        DepositResource(ResourceType.STONE);
+        DepositResource(ResourceType.LEAF);
         DepositResource(ResourceType.STONE);
         DepositResource(ResourceType.WATER);
         CookBodyPart();
         
-        DepositResource(ResourceType.WATER);
+        DepositResource(ResourceType.LEAF);
         DepositResource(ResourceType.STONE);
         DepositResource(ResourceType.WATER);
         
