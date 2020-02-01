@@ -10,6 +10,10 @@ public class Cauldron : MonoBehaviour
     public RecipeManager _recipeManager;
 
     public int max_ingredient = 3;
+        
+    public HeadPart CurrentHead { get; set; }
+    public TorsoPart CurrentTorso { get; set; }
+    public LegPart CurrentLeg { get; set; }
 
     public Sprite leaf;
     public Sprite stone;
@@ -19,11 +23,6 @@ public class Cauldron : MonoBehaviour
     public SpriteRenderer second_case;
     public SpriteRenderer third_case;
 
-
-
-    public HeadPart CurrentHead { get; set; }
-    public TorsoPart CurrentTorso { get; set; }
-    public LegPart CurrentLeg { get; set; }
 
     public List<ResourceType> addedResources = new List<ResourceType>();
 
@@ -113,18 +112,29 @@ public class Cauldron : MonoBehaviour
             addedResources[1],
             addedResources[2]);
         addedResources.Clear();
-        
-        if (part.GetType() == typeof(HeadPart))
+
+        var headPart = part as HeadPart;
+        if (headPart != null)
         {
-            CurrentHead = (HeadPart)part;
+            CurrentHead = headPart;
+            Debug.Log("New head cooked!");
+            return;
         }
-        else if (part.GetType() == typeof(TorsoPart))
+
+        var torsoPart = part as TorsoPart;
+        if (torsoPart != null)
         {
             CurrentTorso = (TorsoPart) part;
+            Debug.Log("New torso cooked!");
+            return;
         }
-        else if (part.GetType() == typeof(HeadPart))
+
+        var legPart = part as LegPart;
+        if (legPart != null)
         {
             CurrentLeg = (LegPart) part;
+            Debug.Log("New leg cooked!");
+            return;
         }
         Debug.Log("New body part cooked!");
         hide_ui_resosurce();

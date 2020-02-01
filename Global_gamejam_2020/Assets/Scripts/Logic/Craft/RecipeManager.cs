@@ -36,9 +36,13 @@ namespace Logic.Craft
             // Cherche dans la liste des recettes découvertes
             foreach (var recipe in DiscoveredRecipes)
             {
-                if (recipe.Resources[0] == res1 &&
-                    recipe.Resources[1] == res2 &&
-                    recipe.Resources[3] == res3)
+                var testRes1 = recipe.Resources[0];
+                var testRes2 = recipe.Resources[1];
+                var testRes3 = recipe.Resources[2];
+                bool test1 = testRes1 == res1;
+                bool test2 = testRes2 == res2;
+                bool test3 = testRes3 == res3;
+                if (test1 && test2 && test3)
                 {
                     return recipe;
                 }
