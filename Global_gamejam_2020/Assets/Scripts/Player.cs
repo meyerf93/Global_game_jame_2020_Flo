@@ -83,8 +83,6 @@ public class Player : MonoBehaviour
 
     void InteractWithResource()
     {
-        Resource temp_ressource;
-
         if (conlision_tag_etected == "Ressource")
         {
             Resource temp_ressource = display_ressource.GetComponent<Resource>();

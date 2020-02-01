@@ -15,8 +15,8 @@ namespace Logic.World
         public GameObject prefab_water;
         
         private Random rand = new Random();
-        private int randMin = 0;
-        private int randMax = 0;
+        private int x_boundary = 25;
+        private int y_boundary = 15;
         
         public int number_of_resources_on_map = 30;
 
@@ -31,7 +31,9 @@ namespace Logic.World
         {
             for (int i = 0; i < number_of_resources_on_map; i++)
             {
+                SpawnNewResource(ResourceType.STONE);
                 SpawnNewResource(ResourceType.LEAF);
+                SpawnNewResource(ResourceType.WATER);
             }
         }
         public void SpawnNewResource(ResourceType type)
@@ -50,20 +52,17 @@ namespace Logic.World
                     Instantiate(prefab_water, GetRandomVector(), Quaternion.identity).transform.SetParent(transform);
                     break;
 
-
-
             }
-            //temp.transform.SetParent(transform);
-            //Destroy(temp);
         }
 
         private Vector3 GetRandomVector()
-        {
-            return new Vector3(
-                rand.Next(randMin, randMax),
-                rand.Next(randMin, randMax),
+        { var temp = new Vector3(
+                rand.Next(-x_boundary, x_boundary),
+                rand.Next(-y_boundary, y_boundary),
                 transform.position.z
-                );
+            );
+            Debug.Log(temp);
+            return temp;
         }
     }
   

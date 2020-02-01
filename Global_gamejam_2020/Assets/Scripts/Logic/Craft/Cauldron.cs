@@ -24,11 +24,6 @@ public class Cauldron : MonoBehaviour
     public SpriteRenderer third_case;
 
 
-
-    public HeadPart CurrentHead { get; set; }
-    public TorsoPart CurrentTorso { get; set; }
-    public LegPart CurrentLeg { get; set; }
-
     public List<ResourceType> addedResources = new List<ResourceType>();
 
     private void Awake()
