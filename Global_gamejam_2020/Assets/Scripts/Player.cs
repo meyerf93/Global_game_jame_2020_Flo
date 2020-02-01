@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
+
+    public float moveSpeed;
+
     InputMaster Controls;
 
     Vector2 move;
@@ -11,7 +14,6 @@ public class Player : MonoBehaviour
     private Vector3 m_Velocity = Vector3.zero;
     private bool m_FacingRight = true;  // For determining which way the player is currently facing.
     [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  // How much to smooth out the movement
-
 
     private void Awake()
     {
@@ -59,7 +61,7 @@ public class Player : MonoBehaviour
         // Move the character by finding the target velocity
         Vector3 targetVelocity = new Vector2(move_x, mvoe_y);
         // And then smoothing it out and applying it to the character
-        m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
+        m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity*moveSpeed, ref m_Velocity, m_MovementSmoothing);
 
         // If the input is moving the player right and the player is facing left...
         if (move_x > 0 && !m_FacingRight)
