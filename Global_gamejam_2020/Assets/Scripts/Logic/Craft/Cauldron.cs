@@ -104,26 +104,35 @@ public class Cauldron : MonoBehaviour
     }
     public void CookBodyPart()
     {
-        Debug.Log("Try to cook part...");
-        
         if (addedResources.Count < 3) return;
         var part = _recipeManager.GetBodyPart(
             addedResources[0],
             addedResources[1],
             addedResources[2]);
         addedResources.Clear();
-        
-        if (part.GetType() == typeof(HeadPart))
+
+        var headPart = part as HeadPart;
+        if (headPart != null)
         {
-            CurrentHead = (HeadPart)part;
+            CurrentHead = headPart;
+            Debug.Log("New head cooked!");
+            return;
         }
-        else if (part.GetType() == typeof(TorsoPart))
+
+        var torsoPart = part as TorsoPart;
+        if (torsoPart != null)
         {
             CurrentTorso = (TorsoPart) part;
+            Debug.Log("New torso cooked!");
+            return;
         }
-        else if (part.GetType() == typeof(HeadPart))
+
+        var legPart = part as LegPart;
+        if (legPart != null)
         {
             CurrentLeg = (LegPart) part;
+            Debug.Log("New leg cooked!");
+            return;
         }
         Debug.Log("New body part cooked!");
         hide_ui_resosurce();
