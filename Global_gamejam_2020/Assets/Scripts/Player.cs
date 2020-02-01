@@ -47,6 +47,7 @@ public class Player : MonoBehaviour
 
         Controls.Player.Cook_part.performed += _ => CookBodyPart();
         Controls.Player.AssembleBodyParts.performed += _ => AssembleBodyParts();
+
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -82,6 +83,8 @@ public class Player : MonoBehaviour
 
     void InteractWithResource()
     {
+        Resource temp_ressource;
+
         if (conlision_tag_etected == "Ressource")
         {
             Resource temp_ressource = display_ressource.GetComponent<Resource>();

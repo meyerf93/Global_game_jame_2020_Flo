@@ -94,6 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
+  grounded: 1
 --- !u!1 &2417511322051303888
 GameObject:
   m_ObjectHideFlags: 0
