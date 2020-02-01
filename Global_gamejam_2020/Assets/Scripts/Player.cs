@@ -12,6 +12,10 @@ public class Player : MonoBehaviour
     public GameObject prefab_stone;
     public GameObject prefab_water;
 
+    public Sprite leaf;
+    public Sprite stone;
+    public Sprite water;
+
     public GameObject display_ressource;
 
 
@@ -36,6 +40,7 @@ public class Player : MonoBehaviour
         conlision_tag_etected = "None";
         Controls.Player.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
         Controls.Player.Move.canceled += ctx => move = Vector2.zero;
+        Controls.Player.Take_ressource.performed += _ => add_ingredient();
 
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -45,7 +50,8 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.tag == "Ressource")
         {
-            Controls.Player.Take_ressource.performed += _ => Take_ressource();
+            //Controls.Player.Take_ressource.canceled += _ => add_ingredient(); ;
+            //Controls.Player.Take_ressource.performed += _ => Take_ressource();
 
             //If the GameObject's name matches the one you suggest, output this message in the console
             //bug.Log("It's Ressource");
@@ -54,7 +60,8 @@ public class Player : MonoBehaviour
         }
         else if (collision.gameObject.tag == "cauldron_triger")
         {
-            Controls.Player.Take_ressource.performed += _ => add_ingredient();
+            //Controls.Player.Take_ressource.canceled += _ => Take_ressource(); ;
+
 
             //If the GameObject has the same tag as specified, output this message in the console
             //bug.Log("It's cauldron_triger");
@@ -68,41 +75,50 @@ public class Player : MonoBehaviour
         conlision_tag_etected = "None";
     }
 
-    void Take_ressource()
-    {
-        //Check for a match with the specified name on any GameObject that collides with your GameObject
-        if (conlision_tag_etected == "Ressource")
-        {
-            //If the GameObject's name matches the one you suggest, output this message in the console
-            Debug.Log("Take ressource");
-            Resource temp_ressource = colision_ressource.GetComponent<Resource>();
-            display_prefab(temp_ressource.type);
-            Destroy(colision_ressource);
-        }
-    }
-
-    void display_prefab(ResourceType ressource)
-    {
-        GameObject prefab_ressource = new GameObject();
-        switch (ressource)
-        {
-            case ResourceType.LEAF:
-                prefab_ressource = Instantiate(prefab_leaf, new Vector3(0, 0, 0), Quaternion.identity);
-                display_ressource = prefab_ressource;
-                break;
-            case ResourceType.STONE:
-                prefab_ressource = Instantiate(prefab_stone, new Vector3(0, 0, 0), Quaternion.identity);
-                display_ressource = prefab_ressource;
-                break;
-            case ResourceType.WATER:
-                prefab_ressource = Instantiate(prefab_water, new Vector3(0, 0, 0), Quaternion.identity);
-                display_ressource = prefab_ressource;
-                break;
-        }
-    }
-
     void add_ingredient()
     {
+        if (conlision_tag_etected == "Ressource")
+        {
+            Debug.Log("1");
+
+            Resource temp_ressource = colision_ressource.GetComponent<Resource>();
+
+            if (temp_ressource.grounded == true)
+            {
+                //If the GameObject's name matches the one you suggest, output this message in the console
+                Debug.Log("Take ressource");
+                display_prefab(temp_ressource.type);
+                Destroy(colision_ressource);
+            }
+        }
+        else
+        {
+            Debug.Log("2");
+            Resource temp_ressource = display_ressource.GetComponent<Resource>();
+            SpriteRenderer temp_sprite = display_ressource.GetComponent<SpriteRenderer>();
+            GameObject temp_gameobj;
+            Color temp_color = new Color(255, 255, 255, 0);
+            Transform parent = GetComponentInParent<Transform>();
+            if (temp_ressource.grounded == false)
+            {
+                switch (temp_ressource.type)
+                {
+                    case ResourceType.LEAF:
+                        temp_gameobj = Instantiate(prefab_leaf, new Vector3(parent.position.x + 1, parent.position.y, parent.position.z), Quaternion.identity);
+                        break;
+                    case ResourceType.STONE:
+                        temp_gameobj = Instantiate(prefab_stone, new Vector3(parent.position.x + 1, parent.position.y, parent.position.z), Quaternion.identity);
+                        break;
+                    case ResourceType.WATER:
+                        temp_gameobj = Instantiate(prefab_water, new Vector3(parent.position.x + 1, parent.position.y, parent.position.z), Quaternion.identity);
+                        break;
+
+                }
+                temp_sprite.color = temp_color;
+                temp_ressource.grounded = true;
+
+            }
+        }
         //Check for a match with the specific tag on any GameObject that collides with your GameObject
         //Check for a match with the specified name on any GameObject that collides with your GameObject
         if (conlision_tag_etected == "cauldron_triger")
@@ -112,6 +128,34 @@ public class Player : MonoBehaviour
         }
     }
 
+    void display_prefab(ResourceType ressource)
+    {
+        Resource temp_ressource;
+        SpriteRenderer temp_sprite;
+        Color temp_color = new Color(255, 255, 255, 255);
+        temp_ressource = display_ressource.GetComponent<Resource>();
+        temp_sprite = display_ressource.GetComponent<SpriteRenderer>();
+        switch (ressource)
+        {
+            case ResourceType.LEAF:
+                temp_ressource.type = ResourceType.LEAF;
+                temp_sprite.sprite = leaf;
+                break;
+            case ResourceType.STONE:
+                temp_ressource.type = ResourceType.STONE;
+                temp_sprite.sprite = stone;
+                break;
+            case ResourceType.WATER:
+
+                temp_ressource.type = ResourceType.WATER;
+                temp_sprite.sprite = water;
+                break;
+        }
+
+        temp_sprite.color = temp_color;
+        temp_ressource.grounded = false;
+
+    }
 
     private void Update()
     {
