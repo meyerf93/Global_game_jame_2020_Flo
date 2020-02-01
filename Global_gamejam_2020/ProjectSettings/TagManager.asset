@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - cauldron_triger
+  - Ressource
   layers:
   - Default
   - TransparentFX

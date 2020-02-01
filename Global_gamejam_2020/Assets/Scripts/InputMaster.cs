@@ -35,7 +35,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Fire"",
+                    ""name"": ""Take_ressource"",
                     ""type"": ""Button"",
                     ""id"": ""9c761f5e-efc2-415d-83eb-4de84c84bb08"",
                     ""expectedControlType"": ""Button"",
@@ -235,7 +235,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""Fire"",
+                    ""action"": ""Take_ressource"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -246,7 +246,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Fire"",
+                    ""action"": ""Take_ressource"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -257,7 +257,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Touch"",
-                    ""action"": ""Fire"",
+                    ""action"": ""Take_ressource"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -268,7 +268,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Joystick"",
-                    ""action"": ""Fire"",
+                    ""action"": ""Take_ressource"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -279,7 +279,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""XR"",
-                    ""action"": ""Fire"",
+                    ""action"": ""Take_ressource"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -867,7 +867,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
-        m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
+        m_Player_Take_ressource = m_Player.FindAction("Take_ressource", throwIfNotFound: true);
         m_Player_Drop_chaudron = m_Player.FindAction("Drop_chaudron", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
@@ -933,7 +933,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Look;
-    private readonly InputAction m_Player_Fire;
+    private readonly InputAction m_Player_Take_ressource;
     private readonly InputAction m_Player_Drop_chaudron;
     public struct PlayerActions
     {
@@ -941,7 +941,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         public PlayerActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Look => m_Wrapper.m_Player_Look;
-        public InputAction @Fire => m_Wrapper.m_Player_Fire;
+        public InputAction @Take_ressource => m_Wrapper.m_Player_Take_ressource;
         public InputAction @Drop_chaudron => m_Wrapper.m_Player_Drop_chaudron;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -958,9 +958,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Look.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
                 @Look.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
                 @Look.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
-                @Fire.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
-                @Fire.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
-                @Fire.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
+                @Take_ressource.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTake_ressource;
+                @Take_ressource.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTake_ressource;
+                @Take_ressource.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTake_ressource;
                 @Drop_chaudron.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDrop_chaudron;
                 @Drop_chaudron.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDrop_chaudron;
                 @Drop_chaudron.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDrop_chaudron;
@@ -974,9 +974,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Look.started += instance.OnLook;
                 @Look.performed += instance.OnLook;
                 @Look.canceled += instance.OnLook;
-                @Fire.started += instance.OnFire;
-                @Fire.performed += instance.OnFire;
-                @Fire.canceled += instance.OnFire;
+                @Take_ressource.started += instance.OnTake_ressource;
+                @Take_ressource.performed += instance.OnTake_ressource;
+                @Take_ressource.canceled += instance.OnTake_ressource;
                 @Drop_chaudron.started += instance.OnDrop_chaudron;
                 @Drop_chaudron.performed += instance.OnDrop_chaudron;
                 @Drop_chaudron.canceled += instance.OnDrop_chaudron;
@@ -1146,7 +1146,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
-        void OnFire(InputAction.CallbackContext context);
+        void OnTake_ressource(InputAction.CallbackContext context);
         void OnDrop_chaudron(InputAction.CallbackContext context);
     }
     public interface IUIActions

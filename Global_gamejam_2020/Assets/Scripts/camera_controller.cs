@@ -23,7 +23,7 @@ public class camera_controller : MonoBehaviour
     void Start()
     {
         Player player_controller = player.GetComponent<Player>();
-        moveSpeed = player_controller.moveSpeed;
+        moveSpeed = player_controller.moveSpeed + 1;
         minBounds = boundsBox.bounds.min;
         maxBounds = boundsBox.bounds.max;
 
