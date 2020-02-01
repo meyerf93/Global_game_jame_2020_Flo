@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     Vector2 move;
     private Rigidbody2D m_Rigidbody2D;
     private Vector3 m_Velocity = Vector3.zero;
-    private bool m_FacingRight = true;  // For determining which way the player is currently facing.
+    private bool m_FacingRight = false;  // For determining which way the player is currently facing.
     [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  // How much to smooth out the movement
 
     private void Awake()
