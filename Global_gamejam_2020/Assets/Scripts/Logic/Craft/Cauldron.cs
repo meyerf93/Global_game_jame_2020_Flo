@@ -28,6 +28,8 @@ public class Cauldron : MonoBehaviour
         {
             addedResources.Add(newIngredient);
         }
+        
+        Debug.Log("New resource added to caldron!");
     }
 
     public void CookBodyPart()
@@ -38,7 +40,6 @@ public class Cauldron : MonoBehaviour
             addedResources[1],
             addedResources[2]);
         addedResources.Clear();
-        Debug.Log("New Body part created!");
         
         if (part.GetType() == typeof(HeadPart))
         {
@@ -52,7 +53,7 @@ public class Cauldron : MonoBehaviour
         {
             CurrentLeg = (LegPart) part;
         }
-
+        Debug.Log("New body part cooked!");
         
     }
 
@@ -66,6 +67,7 @@ public class Cauldron : MonoBehaviour
         CurrentTorso = null;
         
         // TODO Create new angel
+        Debug.Log("New creature created and ready to fight the devil corruption!");
     }
          
 }
