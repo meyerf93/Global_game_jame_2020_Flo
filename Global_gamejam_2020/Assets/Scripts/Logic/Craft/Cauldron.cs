@@ -20,6 +20,7 @@ public class Cauldron : MonoBehaviour
     public SpriteRenderer third_case;
 
 
+
     public HeadPart CurrentHead { get; set; }
     public TorsoPart CurrentTorso { get; set; }
     public LegPart CurrentLeg { get; set; }
@@ -104,40 +105,31 @@ public class Cauldron : MonoBehaviour
     }
     public void CookBodyPart()
     {
+        Debug.Log("Try to cook part...");
+        
         if (addedResources.Count < 3) return;
         var part = _recipeManager.GetBodyPart(
             addedResources[0],
             addedResources[1],
             addedResources[2]);
         addedResources.Clear();
-
-        var headPart = part as HeadPart;
-        if (headPart != null)
+        
+        if (part.GetType() == typeof(HeadPart))
         {
-            CurrentHead = headPart;
-            Debug.Log("New head cooked!");
-            return;
+            CurrentHead = (HeadPart)part;
         }
-
-        var torsoPart = part as TorsoPart;
-        if (torsoPart != null)
+        else if (part.GetType() == typeof(TorsoPart))
         {
             CurrentTorso = (TorsoPart) part;
-            Debug.Log("New torso cooked!");
-            return;
         }
-
-        var legPart = part as LegPart;
-        if (legPart != null)
+        else if (part.GetType() == typeof(HeadPart))
         {
             CurrentLeg = (LegPart) part;
-            Debug.Log("New leg cooked!");
-            return;
         }
         Debug.Log("New body part cooked!");
         hide_ui_resosurce();
 
-
+        //set the ui and the sprit from list part.ui = ,,,
     }
 
     public void AssembleAngel()
