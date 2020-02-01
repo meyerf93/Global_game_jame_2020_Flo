@@ -1,9 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Collections;
 using Logic.World;
+using UnityEngine;
 
 
-public class RecipeManager
+public class RecipeManager : MonoBehaviour
 {
     private List<BodyPart> _completePartsList = new List<BodyPart>();
        
