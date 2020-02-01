@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Logic.Creatures;
@@ -8,4 +9,11 @@ public class BodyPart : MonoBehaviour
 {
     public AngelType angelType;
     public List<BuildingType> actionsList;
+
+    private void Awake()
+    {
+        
+    }
+
+    
 }

@@ -1,63 +1,58 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
+using Logic.Creatures.Parts;
 using Logic.World;
+using UnityEngine;
 
-
-public class RecipeManager
+namespace Logic.Craft
 {
-    private List<BodyPart> _completePartsList = new List<BodyPart>();
-       
-    private void Initate_list_part()
+    public class RecipeManager : MonoBehaviour
     {
-        //add x part
-    }
+        private BodyPartsGenerator _bodyPartsGenerator;
 
-    private List<BodyPart> _partsToDiscover = new List<BodyPart>();
+        private List<BodyPart> _partsToDiscover = new List<BodyPart>();
 
-    public void Reset()
-    {
-        _partsToDiscover.Clear();
-        _partsToDiscover = _completePartsList;
-    }
-
-    public List<Recipe> RecipesList { get; set; }
-
-    public BodyPart GetBodyPart(ResourceType res1, ResourceType res2, ResourceType res3)
-    {
-        return GetRecipe(res1, res2, res3).BodyPart;
-    }
-
-    private Recipe GetRecipe(ResourceType res1, ResourceType res2, ResourceType res3)
-    {
-        // Cherche et retourne la recette correspondant aux resources.
-        // Si la recette n'existe pas, elle est créée et ajoutée à la liste des recettes connues.
-             
-        foreach (var recipe in RecipesList)
+        private void Awake()
         {
-            if (recipe.Ingredients[0] == res1 &&
-                recipe.Ingredients[1] == res2 &&
-                recipe.Ingredients[3] == res3)
-            {
-                return recipe;
-            }
+            _bodyPartsGenerator = gameObject.AddComponent<BodyPartsGenerator>();
+            Reset();
         }
-        return GenerateNewRecipe(res1, res2, res3);
-    }
 
-    private Recipe GenerateNewRecipe(ResourceType res1, ResourceType res2, ResourceType res3)
-    {
-        var part = GetNextPartForRecipe();
-        var newRecipe = new Recipe(res1, res2, res3, part);
-        RecipesList.Add(newRecipe);
-        return newRecipe;
-    }
+        public void Reset()
+        {
+            _bodyPartsGenerator.Reset();
+        }
 
-    private BodyPart GetNextPartForRecipe()
-    {
-        // Retourne la partie de corps correspondant à la nouvelle 
-        // recette découverte.
-        var part = _partsToDiscover[0];
-        _partsToDiscover.RemoveAt(0);
-        return part;
+        public List<Recipe> DiscoveredRecipes { get; set; }
+
+        public BodyPart GetBodyPart(ResourceType res1, ResourceType res2, ResourceType res3)
+        {
+            return GetRecipe(res1, res2, res3).PartOfBody;
+        }
+
+        private Recipe GetRecipe(ResourceType res1, ResourceType res2, ResourceType res3)
+        {
+            // Cherche dans la liste des recettes découvertes
+            foreach (var recipe in DiscoveredRecipes)
+            {
+                if (recipe.Resources[0] == res1 &&
+                    recipe.Resources[1] == res2 &&
+                    recipe.Resources[3] == res3)
+                {
+                    return recipe;
+                }
+            }
+            // Si la recherche ne retourne rien, créer nouvelle recette
+            return GenerateNewRecipe(res1, res2, res3);
+        }
+
+        private Recipe GenerateNewRecipe(ResourceType res1, ResourceType res2, ResourceType res3)
+        {
+            Debug.Log("New recipe discovered!!");
+            var part = _bodyPartsGenerator.GetNextBodypart();
+            var newRecipe = new Recipe(res1, res2, res3, part);
+            DiscoveredRecipes.Add(newRecipe);
+            return newRecipe;
+        }
     }
 }
