@@ -27,9 +27,14 @@ public class Cauldron : MonoBehaviour
         if (addedResources.Count < max_ingredient)
         {
             addedResources.Add(newIngredient);
+            display(newIngredient);
         }
         
         Debug.Log("New resource added to caldron!");
+    }
+    void display(ResourceType newIngredient)
+    {
+        Debug.Log("upddate UI");
     }
 
     public void CookBodyPart()

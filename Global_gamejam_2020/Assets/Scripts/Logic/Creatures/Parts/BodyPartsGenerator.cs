@@ -13,10 +13,11 @@ namespace Logic.Creatures.Parts
         // une créature (angel) associée, et des actions à réaliser (qui seront additionnées
         // lorsque la créature sera assemblée.
 
-        private int[] _angelPartCounter;
-        private int[] _actionsCounter;
-        
-        private int max_parts_amount = 27;
+        public int[] _angelPartCounter = { };
+        public int[] _actionsCounter = { };
+
+
+        public int max_parts_amount = 27;
         
         // private List<AngelType> angelTypes = new List<AngelType>
         // {
