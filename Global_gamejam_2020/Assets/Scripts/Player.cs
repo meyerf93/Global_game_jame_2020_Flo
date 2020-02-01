@@ -80,9 +80,11 @@ public class Player : MonoBehaviour
 
     void add_ingredient()
     {
+        Resource temp_ressource;
+
         if (conlision_tag_etected == "Ressource")
         {
-            Resource temp_ressource = colision_ressource.GetComponent<Resource>();
+            temp_ressource = colision_ressource.GetComponent<Resource>();
 
             if (temp_ressource.grounded == true)
             {
@@ -94,11 +96,12 @@ public class Player : MonoBehaviour
         }
         else
         {
-            if (conlision_tag_etected == "cauldron_triger")
+            temp_ressource = display_ressource.GetComponent<Resource>();
+
+            if (conlision_tag_etected == "cauldron_triger" && (temp_ressource.grounded ==false))
             {
                 //If the GameObject's name matches the one you suggest, output this message in the console
                 Debug.Log("add super amaizin ingredient");
-                Resource temp_ressource = display_ressource.GetComponent<Resource>();
 
                 cauldron.DepositResource(temp_ressource.type);
 
@@ -112,7 +115,6 @@ public class Player : MonoBehaviour
             }
             else
             {
-                Resource temp_ressource = display_ressource.GetComponent<Resource>();
                 SpriteRenderer temp_sprite = display_ressource.GetComponent<SpriteRenderer>();
                 GameObject temp_gameobj;
                 Color temp_color = new Color(255, 255, 255, 0);
