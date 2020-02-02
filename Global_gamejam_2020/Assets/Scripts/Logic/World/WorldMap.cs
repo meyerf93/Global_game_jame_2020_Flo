@@ -90,7 +90,8 @@ namespace Logic.World
                     Angel temp_angel_instance = Instantiate(temp_angel, SpawnPositionAngel, Quaternion.identity);
                     temp_angel_instance.transform.SetParent(transform);
                     copy_angel(temp_angel_instance, angel);
-                    angel_on_map.Add(temp_angel_instance);
+                    buildingsList.Add(temp_angel_instance);
+
                     AudioSource.PlayClipAtPoint(victorySound, Camera.main.transform.position, volume);
                 }
             }
@@ -190,9 +191,11 @@ namespace Logic.World
 
         public void DestroyBuilding(Transform currentTarget)
         {
+            var buildingTag = currentTarget.gameObject.tag;
+            _scoreBar.ScoreDecrease(BuildingType.Pond);
+
             AudioSource.PlayClipAtPoint(destructionSound, Camera.main.transform.position, volume);
             Destroy(currentTarget);
-            var buildingTag = currentTarget.gameObject.tag;
             // switch (buildingTag)
             // {
             //     case "Tree":
@@ -205,6 +208,7 @@ namespace Logic.World
             //         _scoreBar.ScoreDecrease(BuildingType.Rock);
             //         break;
             // }
+
         }
     }
 }

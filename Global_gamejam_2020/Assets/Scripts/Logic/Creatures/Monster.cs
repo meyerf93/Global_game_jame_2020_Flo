@@ -26,7 +26,7 @@ public class Monster : Creature
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Tree") || other.CompareTag("Pond") || other.CompareTag("Rock"))
+        if (other.CompareTag("Tree") || other.CompareTag("Pond") || other.CompareTag("Rock") || other.CompareTag("Angel"))
         {
             Debug.Log($"Trigger collison with {other}");
             map.DestroyBuilding(other.transform);
@@ -42,7 +42,9 @@ public class Monster : Creature
         if (buildings.Any())
         {
             Debug.Log("Evil destroy building!");
+            rand = new Random();
             int randIdx = rand.Next(0, buildings.Count - 1);
+            Debug.Log("index random building : " + randIdx);
             currentTarget = buildings[randIdx];
             DestinationSetter.target = currentTarget.transform;
 
