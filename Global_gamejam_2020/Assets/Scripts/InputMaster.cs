@@ -57,6 +57,22 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Cheat"",
+                    ""type"": ""Button"",
+                    ""id"": ""2a74cbec-0083-4605-846c-0cb48aa99f49"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""cheat_2"",
+                    ""type"": ""Button"",
+                    ""id"": ""bd151211-2f0c-49c1-8f92-411c5ce90dbc"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -343,6 +359,28 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""AssembleBodyParts"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1f076206-8a54-4c5e-af12-7483bc5ad460"",
+                    ""path"": ""<Keyboard>/numpad1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cheat"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a1eb4c07-a5c0-43b2-9a7f-c1c1fbca1af5"",
+                    ""path"": ""<Keyboard>/numpad2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""cheat_2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -730,6 +768,17 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""41139031-abf1-43b0-a176-749c15fb65dc"",
+                    ""path"": ""<XInputController>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Submit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""82627dcc-3b13-4ba9-841d-e4b746d6553e"",
                     ""path"": ""*/{Cancel}"",
                     ""interactions"": """",
@@ -933,6 +982,8 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_Player_Take_ressource = m_Player.FindAction("Take_ressource", throwIfNotFound: true);
         m_Player_Cook_part = m_Player.FindAction("Cook_part", throwIfNotFound: true);
         m_Player_AssembleBodyParts = m_Player.FindAction("AssembleBodyParts", throwIfNotFound: true);
+        m_Player_Cheat = m_Player.FindAction("Cheat", throwIfNotFound: true);
+        m_Player_cheat_2 = m_Player.FindAction("cheat_2", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1000,6 +1051,8 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Take_ressource;
     private readonly InputAction m_Player_Cook_part;
     private readonly InputAction m_Player_AssembleBodyParts;
+    private readonly InputAction m_Player_Cheat;
+    private readonly InputAction m_Player_cheat_2;
     public struct PlayerActions
     {
         private @InputMaster m_Wrapper;
@@ -1009,6 +1062,8 @@ public class @InputMaster : IInputActionCollection, IDisposable
         public InputAction @Take_ressource => m_Wrapper.m_Player_Take_ressource;
         public InputAction @Cook_part => m_Wrapper.m_Player_Cook_part;
         public InputAction @AssembleBodyParts => m_Wrapper.m_Player_AssembleBodyParts;
+        public InputAction @Cheat => m_Wrapper.m_Player_Cheat;
+        public InputAction @cheat_2 => m_Wrapper.m_Player_cheat_2;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1033,6 +1088,12 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @AssembleBodyParts.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAssembleBodyParts;
                 @AssembleBodyParts.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAssembleBodyParts;
                 @AssembleBodyParts.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAssembleBodyParts;
+                @Cheat.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCheat;
+                @Cheat.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCheat;
+                @Cheat.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCheat;
+                @cheat_2.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCheat_2;
+                @cheat_2.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCheat_2;
+                @cheat_2.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCheat_2;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1052,6 +1113,12 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @AssembleBodyParts.started += instance.OnAssembleBodyParts;
                 @AssembleBodyParts.performed += instance.OnAssembleBodyParts;
                 @AssembleBodyParts.canceled += instance.OnAssembleBodyParts;
+                @Cheat.started += instance.OnCheat;
+                @Cheat.performed += instance.OnCheat;
+                @Cheat.canceled += instance.OnCheat;
+                @cheat_2.started += instance.OnCheat_2;
+                @cheat_2.performed += instance.OnCheat_2;
+                @cheat_2.canceled += instance.OnCheat_2;
             }
         }
     }
@@ -1221,6 +1288,8 @@ public class @InputMaster : IInputActionCollection, IDisposable
         void OnTake_ressource(InputAction.CallbackContext context);
         void OnCook_part(InputAction.CallbackContext context);
         void OnAssembleBodyParts(InputAction.CallbackContext context);
+        void OnCheat(InputAction.CallbackContext context);
+        void OnCheat_2(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

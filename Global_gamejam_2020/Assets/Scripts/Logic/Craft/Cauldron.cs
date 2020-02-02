@@ -10,11 +10,10 @@ public class Cauldron : MonoBehaviour
     public RecipeManager _recipeManager;
     public WorldMap worldManager;
     public int max_ingredient = 3;
-        
-    public BodyPart CurrentHead { get; set; }
-    public BodyPart CurrentTorso { get; set; }
-    public BodyPart CurrentLeg { get; set; }
 
+    public GameObject help_angel;
+    public GameObject help_body;
+        
     public Sprite leaf;
     public Sprite stone;
     public Sprite water;
@@ -29,6 +28,7 @@ public class Cauldron : MonoBehaviour
 
     public Familly famillies_list;
     public List<ResourceType> addedResources = new List<ResourceType>();
+    public List<BodyPart> addedBody = new List<BodyPart>();
 
     private void Awake()
     {
@@ -59,6 +59,7 @@ public class Cauldron : MonoBehaviour
 
             addedResources.Add(newIngredient);
             display_ui_ressource(newIngredient,addedResources.Count);
+            display_help_cauldron();
         }
         
     }
@@ -114,7 +115,7 @@ public class Cauldron : MonoBehaviour
     {
         
         if (addedResources.Count < 3) return;
-        Debug.Log("Try to cook part...");
+        //Debug.Log("Try to cook part...");
         BodyPart part = _recipeManager.GetBodyPart(
             addedResources[0],
             addedResources[1],
@@ -123,22 +124,13 @@ public class Cauldron : MonoBehaviour
         found_good_part_ui(part);
         hide_ui_resosurce();
 
-        switch (part.partType)
-        {
-            case BodyPartType.Head:
-                CurrentHead = part;
-                break;
-            case BodyPartType.Body:
-                CurrentTorso = part;
-                break;
-            case BodyPartType.Foot:
-                CurrentLeg = part;
-                break;
-        }
+        addedBody.Add(part);
 
-         Debug.Log("New "+part.partType+" cooked!");
+        Debug.Log("New "+part.partType+" cooked!");
                        
-         display_part_body(part);
+        display_part_body(part);
+        hide_help_body();
+        display_help_cauldron();
     }
     private void found_good_part_ui(BodyPart part)
     {
@@ -157,13 +149,13 @@ public class Cauldron : MonoBehaviour
 
                     case BodyPartType.Head:
                         part.ui = temp_angel._head.ui;
-                        break;
+                        return;
                     case BodyPartType.Body:
                         part.ui = temp_angel._torso.ui;
-                        break;
+                        return;
                     case BodyPartType.Foot:
                         part.ui = temp_angel._legs.ui;
-                        break;
+                        return;
                 }
                 //Debug.Log("found the same body part " + part.partType);
 
@@ -174,10 +166,10 @@ public class Cauldron : MonoBehaviour
     private void display_part_body(BodyPart bodypart)
     {
         Color temp = new Color(255, 255, 255, 255);
-        Debug.Log("body part angel type : " + bodypart.angelType);
-        Debug.Log("body part body type : " + bodypart.partType);
+        //Debug.Log("body part angel type : " + bodypart.angelType);
+        //Debug.Log("body part body type : " + bodypart.partType);
 
-        Debug.Log("ui sprite : " + bodypart.ui);
+        //Debug.Log("ui sprite : " + bodypart.ui);
         switch (bodypart.partType)
         {
             case BodyPartType.Head:
@@ -195,19 +187,130 @@ public class Cauldron : MonoBehaviour
         }
     }
 
+    public void cheat_2()
+    {
+        DepositResource(ResourceType.STONE);
+        DepositResource(ResourceType.WATER);
+        DepositResource(ResourceType.STONE);
+        CookBodyPart();
+
+        DepositResource(ResourceType.STONE);
+        DepositResource(ResourceType.WATER);
+        DepositResource(ResourceType.WATER);
+        CookBodyPart();
+
+        DepositResource(ResourceType.WATER);
+        DepositResource(ResourceType.STONE);
+        DepositResource(ResourceType.STONE);
+    }
+    public void cheat()
+    {
+        DepositResource(ResourceType.STONE);
+        DepositResource(ResourceType.WATER);
+        DepositResource(ResourceType.WATER);
+        CookBodyPart();
+
+        DepositResource(ResourceType.STONE);
+        DepositResource(ResourceType.STONE);
+        DepositResource(ResourceType.WATER);
+        CookBodyPart();
+
+        DepositResource(ResourceType.WATER);
+        DepositResource(ResourceType.STONE);
+        DepositResource(ResourceType.WATER);
+    }
+
+    private void hide_part_body()
+    {
+        Color temp = new Color(255, 255, 255, 0);
+
+        head_case.color = temp;
+        body_case.color = temp;
+        foot_case.color = temp;
+
+    }
     public void AssembleAngel()
     {
         //Debug.Log("Try to assemble angel...");
-        if (CurrentHead == null || CurrentTorso == null || CurrentLeg == null) return;
+        if (addedBody.Count != 3) return;
         Angel newAngel = gameObject.AddComponent<Angel>();
-        newAngel.SetBodyParts(CurrentHead, CurrentTorso, CurrentLeg);
-        CurrentHead = null;
-        CurrentLeg = null;
-        CurrentTorso = null;
 
-        // TODO Create new angel
-        worldManager.SpwanAngel(newAngel._head.angelType);
-        Debug.Log("Create the angel");
+        BodyPart CurrentHead = gameObject.AddComponent<BodyPart>();
+        BodyPart CurrentTorso = gameObject.AddComponent<BodyPart>();
+        BodyPart CurrentLeg = gameObject.AddComponent<BodyPart>();
+
+        foreach (BodyPart part in addedBody)
+        {
+            if (part.partType == BodyPartType.Head) CurrentHead = part;
+            if (part.partType == BodyPartType.Body) CurrentTorso = part;
+            if (part.partType == BodyPartType.Foot) CurrentLeg = part;
+
+        }
+
+        newAngel.SetBodyParts(CurrentHead, CurrentTorso, CurrentLeg);
+        worldManager.SpwanAngel(newAngel);
+
+        //Debug.Log("create angel ");
+        addedBody.Clear();
+        foreach(BodyPart temp_part in gameObject.GetComponents<BodyPart>())
+        {
+            Destroy(temp_part);
+        }
+
+        Destroy(newAngel);
+        hide_part_body();
+        hide_help_angel();
+    }
+
+    public void display_help_cauldron()
+    {
+        if (addedResources.Count == max_ingredient)
+        {
+            display_help_body();
+        }
+        else
+        {
+            hide_help_body();
+        }
+
+        if(addedBody.Count == max_ingredient)
+        {
+            display_help_angel();
+        }
+        else
+        {
+            hide_help_angel();
+        }
+    }
+
+    public void hide_help_cauldron()
+    {
+        hide_help_body();
+        hide_help_angel();
+    }
+
+    private void hide_help_angel()
+    {
+        help_angel.SetActive(false);
+    }
+    private void display_help_angel()
+    {
+        help_angel.SetActive(true);
+    }
+
+    private void display_help_body()
+    {
+        help_body.SetActive(true);
+    }
+    private void hide_help_body()
+    {
+        help_body.SetActive(false);
+    }
+
+
+    public bool ressource_is_full()
+    {
+        return addedResources.Count == max_ingredient;
     }
          
 }

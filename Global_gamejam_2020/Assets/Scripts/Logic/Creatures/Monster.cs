@@ -33,7 +33,6 @@ public class Monster : Creature
 
     public void DestroyNextBuilding()
     {
-        // Identify next building to destroy
 
         var buildings = map.buildingsList;
         if (buildings.Any())

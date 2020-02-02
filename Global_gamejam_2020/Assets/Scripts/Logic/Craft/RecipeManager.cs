@@ -53,7 +53,7 @@ namespace Logic.Craft
 
         private Recipe GenerateNewRecipe(ResourceType res1, ResourceType res2, ResourceType res3)
         {
-            Debug.Log("New recipe discovered!!");
+            //Debug.Log("New recipe discovered!!");
             BodyPart part = _bodyPartsGenerator.GetNextBodypart();
             Recipe newRecipe = new Recipe(res1, res2, res3, part);
             DiscoveredRecipes.Add(newRecipe);
