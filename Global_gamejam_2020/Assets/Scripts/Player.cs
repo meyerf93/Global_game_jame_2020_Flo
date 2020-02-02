@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Enter in trigger " + collision.gameObject.tag);
+        //Debug.Log("Enter in trigger " + collision.gameObject.tag);
         conlision_tag_etected = "None";
 
         if (collision.gameObject.CompareTag("Ressource"))

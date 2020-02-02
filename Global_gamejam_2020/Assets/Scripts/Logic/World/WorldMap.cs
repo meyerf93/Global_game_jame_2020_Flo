@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UIElements;
@@ -22,7 +23,7 @@ namespace Logic.World
         public GameObject prefab_monster;
 
         public GameObject buildingsManager;
-        private List<GameObject> buildingsList = new List<GameObject>();
+        public List<GameObject> buildingsList = new List<GameObject>();
         
         public GameObject resourcesManager;
         public GameObject monstersManager;
@@ -41,10 +42,10 @@ namespace Logic.World
         private void Awake()
         {
             SpawnInitialResources();
-            SpawnInitialBuildings();
+            SpawnInitialBuildings(); 
             SpawnMonster();
-            
         }
+        
 
         private void Start()
         {
@@ -54,7 +55,7 @@ namespace Logic.World
 
         private void SpawnMonster()
         {
-            Instantiate(prefab_monster, GetRandomVector(), Quaternion.identity).transform.SetParent(this.transform);
+            Instantiate(prefab_monster, GetRandomVector(), Quaternion.identity).transform.SetParent(transform);
         }
             
         
@@ -120,6 +121,24 @@ namespace Logic.World
                 transform.position.z
             );
             return temp;
+        }
+
+        public void DestroyBuilding(GameObject currentTarget)
+        {
+            Destroy(currentTarget);
+            var buildingTag = currentTarget.gameObject.tag;
+            switch (buildingTag)
+            {
+                case "Tree":
+                    _scoreBar.ScoreDecrease(BuildingType.Tree);
+                    break;
+                case "Pond":
+                    _scoreBar.ScoreDecrease(BuildingType.Pond);
+                    break;
+                case "Rock":
+                    _scoreBar.ScoreDecrease(BuildingType.Rock);
+                    break;
+            }
         }
     }
 }

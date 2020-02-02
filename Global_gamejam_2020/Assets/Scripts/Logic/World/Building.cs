@@ -1,5 +1,7 @@
 
-public class Building
+using System;
+using UnityEngine;
+
+public class Building : MonoBehaviour
 {
-        
 }
