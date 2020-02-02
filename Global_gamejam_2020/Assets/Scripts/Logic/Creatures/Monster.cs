@@ -46,7 +46,7 @@ public class Monster : Creature
             
             //Debug.Log("Evil destroy building!");
             currentTarget = buildings[0];
-            DestinationSetter.transform = currentTarget.transform;
+            //DestinationSetter.transform = currentTarget.transform;
             //GoTo(currentTarget);
             //DestinationSetter.target = currentTarget.transform;
             //map.DestroyBuilding(currentTarget);
