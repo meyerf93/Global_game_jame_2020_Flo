@@ -33,7 +33,7 @@ public class Cauldron : MonoBehaviour
     private void Awake()
     {
         _recipeManager = gameObject.AddComponent<RecipeManager>();
-        DepositResource(ResourceType.LEAF);
+        /*DepositResource(ResourceType.LEAF);
         DepositResource(ResourceType.STONE);
         DepositResource(ResourceType.WATER);
         CookBodyPart();
@@ -45,7 +45,7 @@ public class Cauldron : MonoBehaviour
         
         DepositResource(ResourceType.WATER);
         DepositResource(ResourceType.STONE);
-        DepositResource(ResourceType.WATER);
+        DepositResource(ResourceType.WATER);*/
         
         
     }
@@ -142,11 +142,11 @@ public class Cauldron : MonoBehaviour
     }
     private void found_good_part_ui(BodyPart part)
     {
-        Debug.Log("try to found the ui");
+        //Debug.Log("try to found the ui");
         foreach(Angel temp_angel in famillies_list.Angel)
         {
-            Debug.Log("part angel type : " + part.angelType);
-            Debug.Log("part angel type : " + temp_angel._head.angelType);
+            //Debug.Log("part angel type : " + part.angelType);
+            //Debug.Log("part angel type : " + temp_angel._head.angelType);
 
             if (part.angelType == temp_angel._head.angelType)
             {
@@ -165,7 +165,7 @@ public class Cauldron : MonoBehaviour
                         part.ui = temp_angel._legs.ui;
                         break;
                 }
-                Debug.Log("found the same body part " + part.partType);
+                //Debug.Log("found the same body part " + part.partType);
 
             }
 

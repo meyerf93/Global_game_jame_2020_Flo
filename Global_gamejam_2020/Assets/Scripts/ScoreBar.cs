@@ -11,7 +11,7 @@ public class ScoreBar : MonoBehaviour
 
     public Image scoreBarImage;
     //private ScoreChange scoreChange;
-    private float scorePercent;
+    public float scorePercent;
     public const int scoreMax = 100;
     float scoreBarValue = .2f;
     [SerializeField] float treePoints = 1;

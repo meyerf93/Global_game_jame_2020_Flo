@@ -62,6 +62,8 @@ namespace Logic.World
         {
             Monster temp_monster = Instantiate(prefab_monster, GetRandomVector(), Quaternion.identity);
             temp_monster.transform.SetParent(transform);
+            temp_monster.SetWorldMap(this);
+            temp_monster.GoDestroyStuff();
             monster_on_map.Add(temp_monster);
         }
 
@@ -84,7 +86,6 @@ namespace Logic.World
         {
             for (int i = 0; i < number_of_initial_buildings; i++)
             {
-                Debug.Log("create a building");
                 SpawnBuilding(BuildingType.Tree);
                 SpawnBuilding(BuildingType.Pond);
             }
