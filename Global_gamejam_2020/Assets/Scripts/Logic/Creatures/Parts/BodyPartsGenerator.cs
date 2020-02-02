@@ -8,12 +8,12 @@ namespace Logic.Creatures.Parts
 {
     public class BodyPartsGenerator : MonoBehaviour
     {
-        // Cette classe gÃ©nÃ¨re la liste des BodyParts pour chaque dÃ©but de partie.
-        // La liste est crÃ©Ã©e avec toutes les propriÃ©tÃ©s des BodyParts nÃ©cessaires, i.e.
-        // une crÃ©ature (angel) associÃ©e, et des actions Ã  rÃ©aliser (qui seront additionnÃ©es
-        // lorsque la crÃ©ature sera assemblÃ©e.
+        // Cette classe génère la liste des BodyParts pour chaque début de partie.
+        // La liste est créée avec toutes les propriétés des BodyParts nécessaires, i.e.
+        // une créature (angel) associée, et des actions à réaliser (qui seront additionnées
+        // lorsque la créature sera assemblée.
 
-        public int[] _angelTypeCounter = new int[2];
+        public int[] _angelTypeCounter = new int[7];
         public int[] _actionsCounter = new int[3];
         public int[] _partCounter = new int[3];
         
@@ -76,9 +76,14 @@ namespace Logic.Creatures.Parts
 
             switch (minIndex)
             {
-                case 1: return AngelType.Treant;
-                case 2: return AngelType.Nayade;
-                default: return AngelType.Fairy;
+                case 0: return AngelType.Gimi;
+                case 1: return AngelType.Frite;
+                case 2: return AngelType.Dango;
+                case 3: return AngelType.Asticot;
+                case 4: return AngelType.Dango;
+                case 5: return AngelType.La_main;
+                case 6: return AngelType.Pumkin;
+                default: return AngelType.Gimi;
             }
         }
         
