@@ -101,13 +101,23 @@ public class Player : MonoBehaviour
 
     private void DropResource()
     {
+        Resource temp_ressource = display_ressource.GetComponent<Resource>();
+
         if (conlision_tag_etected == "cauldron_triger")
         {
-            DropResourceInCaldron();
+
+            if (temp_ressource.grounded == false)
+            {
+                DropResourceInCaldron();
+
+            }
         }
         else
         {
-            DropResourceOnTheFloor();
+            if (temp_ressource.grounded == true)
+            {
+                DropResourceOnTheFloor();
+            }
         }
     }
 
@@ -157,8 +167,8 @@ public class Player : MonoBehaviour
     private void DropResourceInCaldron()
     {
         //If the GameObject's name matches the one you suggest, output this message in the console
-        Debug.Log("add super amaizin ingredient");
         Resource temp_ressource = display_ressource.GetComponent<Resource>();
+        Debug.Log("add super amaizin ingredient : " + temp_ressource.type);
 
         cauldron.DepositResource(temp_ressource.type);
 

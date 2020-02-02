@@ -1,8 +1,8 @@
-﻿
+﻿using System;
 using System.Collections.Generic;
 using Logic.World;
 
-
+[Serializable]
 public class Recipe
 {
     public List<ResourceType> Resources { get; set; }

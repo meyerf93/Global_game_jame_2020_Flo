@@ -4,15 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using Logic.World;
 
+[Serializable]
 public class Angel : Creature
 {
-        
-    private HeadPart _head;
-    private TorsoPart _torso;
-    private LegPart _legs;
+
+    public BodyPart _head;
+    public BodyPart _torso;
+    public BodyPart _legs;
     private List<BuildingType> _actionsList = new List<BuildingType>();
     
-    public void SetBodyParts(HeadPart head, TorsoPart torso, LegPart legs)
+    public void SetBodyParts(BodyPart head, BodyPart torso, BodyPart legs)
     {
         _head = head;
         _torso = torso;
@@ -20,7 +21,7 @@ public class Angel : Creature
         BuildActionsList(head, torso, legs);
     }
 
-    private void BuildActionsList(HeadPart head, TorsoPart torso, LegPart legs)
+    private void BuildActionsList(BodyPart head, BodyPart torso, BodyPart legs)
     {
         // Aggregate actions from parts
         _actionsList.AddRange(head.actionsList);
