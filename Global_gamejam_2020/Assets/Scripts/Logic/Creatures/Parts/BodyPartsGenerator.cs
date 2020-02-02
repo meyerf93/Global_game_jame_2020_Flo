@@ -82,7 +82,7 @@ namespace Logic.Creatures.Parts
             }
         }
         
-        private string GetNextBodyPart()
+        private BodyPartType GetNextBodyPart()
         {
             var minIndex = 0;
             var minValue = 3;
@@ -96,9 +96,9 @@ namespace Logic.Creatures.Parts
 
             switch (minIndex)
             {
-                case 1: return "head";
-                case 2: return "leg";
-                default: return "torso";
+                case 1: return BodyPartType.Head;
+                case 2: return BodyPartType.Body;
+                default: return BodyPartType.Foot;
             }
         }
 
