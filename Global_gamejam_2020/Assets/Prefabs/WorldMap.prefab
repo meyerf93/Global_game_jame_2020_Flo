@@ -151,8 +151,13 @@ MonoBehaviour:
   prefab_pond: {fileID: 4384685508816607269, guid: 6b9a1c26fbe784f02b6d2d38f7122abc,
     type: 3}
   prefab_angel:
-  - {fileID: 408744057195498336, guid: cb94e7f9943b31c4cb5e56d03a97f7a7, type: 3}
+  - {fileID: 408744057195498336, guid: 19dea8f54f3522144b43f35bdfbfdee4, type: 3}
   - {fileID: 5426340022391951661, guid: 4a00bcb1b381e6d43bbf1ed3e8827ca2, type: 3}
+  - {fileID: 1887742483856592775, guid: 1af277095e4dfe6429e46959998e6c61, type: 3}
+  - {fileID: 8989681300230175037, guid: cad1a9bd81a2fbd44ab71633e8a76bf9, type: 3}
+  - {fileID: 5295306451191358188, guid: 1b7fc887fbaee954fba921fd8689ec61, type: 3}
+  - {fileID: 2356479508398472108, guid: 854c9837229179b48966504fed9a838b, type: 3}
+  - {fileID: 5788473773130308456, guid: 5c726bc0e912b994c9bb7c1e26ffe67f, type: 3}
   prefab_monster: {fileID: 4039734714248060597, guid: 8ea054a03b6a3c246971acc87e2270cd,
     type: 3}
   buildingsManager: {fileID: 1181894859}
@@ -166,8 +171,8 @@ MonoBehaviour:
   _scoreBar: {fileID: 0}
   victorySound: {fileID: 8300000, guid: c6c1b796e91914e5f8965084db5780c7, type: 3}
   destructionSound: {fileID: 8300000, guid: 15c3979bb027844779eb17f3613f3e5d, type: 3}
-  volume: 1
   plantingSound: {fileID: 8300000, guid: 640df22e7e7d24b10a546f04585e2723, type: 3}
+  volume: 1
 --- !u!1001 &647757688
 PrefabInstance:
   m_ObjectHideFlags: 0
