@@ -17,35 +17,16 @@ public class Timer : MonoBehaviour
         return string.Format("{0:00}:{1:00}", minutes, seconds);
 
     }
+
     void Start()
     {
         textBox = GetComponent<Text>();
         gameSession = FindObjectOfType<GameSession>();
     }
+
     private void Update()
     {
         currentTime += Time.deltaTime;
-        //textBox.text = FormatTime(currentTime);
         textBox.text = gameSession.FormatTime(currentTime);
     }
 }
-
-//public class ScoreDisplay : MonoBehaviour
-//{
-
-//    Text scoreText;
-//    GameSession gameSession;
-
-//    private void Start()
-//    {
-//        scoreText = GetComponent<Text>();
-//        gameSession = FindObjectOfType<GameSession>();
-//    }
-
-//    private void Update()
-//    {
-//        scoreText.text = gameSession.GetScore().ToString();
-//        // c'est un int qu'on convertit pour texte.
-//    }
-
-//}

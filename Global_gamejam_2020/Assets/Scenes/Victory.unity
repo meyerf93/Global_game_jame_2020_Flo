@@ -714,31 +714,11 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 0.0024029962
       objectReference: {fileID: 0}
-    - target: {fileID: 4417315872454382637, guid: 9f06ea2e919f54fdfbdf09204cc2d107,
-        type: 3}
-      propertyPath: m_Text
-      value: Oh non...
-      objectReference: {fileID: 0}
     - target: {fileID: 6853024460157587844, guid: 9f06ea2e919f54fdfbdf09204cc2d107,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1247763676}
-    - target: {fileID: 7872254832631577420, guid: 9f06ea2e919f54fdfbdf09204cc2d107,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7872254832631577420, guid: 9f06ea2e919f54fdfbdf09204cc2d107,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7872254832631577420, guid: 9f06ea2e919f54fdfbdf09204cc2d107,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8559967318748328710, guid: 9f06ea2e919f54fdfbdf09204cc2d107,
         type: 3}
       propertyPath: m_Color.r
@@ -753,11 +733,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.b
       value: 0.0024029962
-      objectReference: {fileID: 0}
-    - target: {fileID: 8559967318748328710, guid: 9f06ea2e919f54fdfbdf09204cc2d107,
-        type: 3}
-      propertyPath: m_Text
-      value: "La for\xEAt a \xE9t\xE9 d\xE9truite."
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f06ea2e919f54fdfbdf09204cc2d107, type: 3}

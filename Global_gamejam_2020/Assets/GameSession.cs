@@ -33,11 +33,6 @@ public class GameSession : MonoBehaviour
         return string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
-    //public string GetTime()
-    //{
-    //    //FormatTime(currentTime);
-    //}
-
     public void Update()
     {
         currentTime += Time.deltaTime;
