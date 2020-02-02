@@ -63,8 +63,8 @@ namespace Logic.World
             Monster temp_monster = Instantiate(prefab_monster, GetRandomVector(), Quaternion.identity);
             temp_monster.transform.SetParent(transform);
             temp_monster.SetWorldMap(this);
-            temp_monster.GoDestroyStuff();
             monster_on_map.Add(temp_monster);
+            temp_monster.GoDestroyStuff();
         }
 
         public void SpwanAngel(Angel angel)

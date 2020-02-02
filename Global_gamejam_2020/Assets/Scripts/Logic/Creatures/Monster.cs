@@ -7,15 +7,22 @@ using Pathfinding;
 public class Monster : Creature
 {
     public int amount_of_actions = 4;
+
     public Building currentTarget;
     public AIPath AIPath;
     public AIDestinationSetter DestinationSetter;
-    private WorldMap map;
-    
+    public WorldMap map;
+    public List<Building> buildings;
     private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log($"Trigger collison with {other}");
         Destroy(other.gameObject);
+    }
+
+    private void Start()
+    {
+        AIPath = GetComponent<AIPath>();
+        DestinationSetter = GetComponent<AIDestinationSetter>();
     }
 
     public void GoDestroyStuff()
@@ -34,12 +41,12 @@ public class Monster : Creature
     public void DestroyNextBuilding()
     {
 
-        var buildings = map.buildingsList;
         if (buildings.Any())
         {
             
             //Debug.Log("Evil destroy building!");
             currentTarget = buildings[0];
+            DestinationSetter.transform = currentTarget.transform;
             //GoTo(currentTarget);
             //DestinationSetter.target = currentTarget.transform;
             //map.DestroyBuilding(currentTarget);
@@ -54,5 +61,7 @@ public class Monster : Creature
     public void SetWorldMap(WorldMap worldMap)
     {
         map = worldMap;
+        buildings = map.buildingsList;
+
     }
 }
