@@ -6,24 +6,26 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UIElements;
 using Random = System.Random;
+using Logic.Creatures;
 
 namespace Logic.World
 {
     public class WorldMap : MonoBehaviour
     {
+        public Vector3 SpawnPositionAngel;
         public GameObject prefab_leaf;
         public GameObject prefab_stone;
         public GameObject prefab_water;
         
-        public GameObject prefab_tree;
-        //public GameObject prefab_rock;
-        public GameObject prefab_pond;
+        public Building prefab_tree;
+        public Building prefab_rock;
+        public Building prefab_pond;
         
-        public GameObject prefab_angel;
-        public GameObject prefab_monster;
+        public List<Angel> prefab_angel;
+        public Monster prefab_monster;
 
         public GameObject buildingsManager;
-        public List<GameObject> buildingsList = new List<GameObject>();
+        public List<Building> buildingsList = new List<Building>();
         
         public GameObject resourcesManager;
         public GameObject monstersManager;
@@ -34,13 +36,16 @@ namespace Logic.World
         
         public int number_of_resources_on_map = 30;
         public int number_of_initial_buildings = 10;
-
+        public List<Monster> monster_on_map;
+        public List<Angel> angel_on_map;
+        
         public int CorruptionLevel { get; set; }
 
         public ScoreBar _scoreBar;
 
         private void Awake()
         {
+            monster_on_map = new List<Monster>();
             SpawnInitialResources();
             SpawnInitialBuildings(); 
             SpawnMonster();
@@ -55,7 +60,22 @@ namespace Logic.World
 
         private void SpawnMonster()
         {
-            Instantiate(prefab_monster, GetRandomVector(), Quaternion.identity).transform.SetParent(transform);
+            Monster temp_monster = Instantiate(prefab_monster, GetRandomVector(), Quaternion.identity);
+            temp_monster.transform.SetParent(transform);
+            monster_on_map.Add(temp_monster);
+        }
+
+        public void SpwanAngel(AngelType angeltype)
+        {
+            foreach(Angel temp_angel in prefab_angel)
+            {
+                if(temp_angel._head.angelType == angeltype)
+                {
+                    Angel temp_angel_instance = Instantiate(temp_angel, SpawnPositionAngel, Quaternion.identity);
+                    temp_angel_instance.transform.SetParent(transform);
+                    angel_on_map.Add(temp_angel_instance);
+                }
+            }
         }
             
         
@@ -63,7 +83,8 @@ namespace Logic.World
         private void SpawnInitialBuildings()
         {
             for (int i = 0; i < number_of_initial_buildings; i++)
-            {    
+            {
+                Debug.Log("create a building");
                 SpawnBuilding(BuildingType.Tree);
                 SpawnBuilding(BuildingType.Pond);
             }
@@ -71,18 +92,24 @@ namespace Logic.World
 
         private void SpawnBuilding(BuildingType type)
         {
+            Building newBuilding;
             switch ( type)
             {
                 case BuildingType.Tree:
-                    var newBuilding = Instantiate(prefab_tree, GetRandomVector(), Quaternion.identity);
+                    newBuilding = Instantiate(prefab_tree, GetRandomVector(), Quaternion.identity);
                     newBuilding.transform.SetParent(buildingsManager.transform);
                     buildingsList.Add(newBuilding);
                     break; 
                 case BuildingType.Pond:
-                    Instantiate(prefab_pond, GetRandomVector(), Quaternion.identity).transform.SetParent(buildingsManager.transform);
+                    newBuilding = Instantiate(prefab_pond, GetRandomVector(), Quaternion.identity);
+                    newBuilding.transform.SetParent(buildingsManager.transform);
+                    buildingsList.Add(newBuilding);
                     break;
 
                 case BuildingType.Rock:
+                    newBuilding = Instantiate(prefab_rock, GetRandomVector(), Quaternion.identity);
+                    newBuilding.transform.SetParent(buildingsManager.transform);
+                    buildingsList.Add(newBuilding);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
@@ -123,7 +150,7 @@ namespace Logic.World
             return temp;
         }
 
-        public void DestroyBuilding(GameObject currentTarget)
+        public void DestroyBuilding(Building currentTarget)
         {
             Destroy(currentTarget);
             var buildingTag = currentTarget.gameObject.tag;
