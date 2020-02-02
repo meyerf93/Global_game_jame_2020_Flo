@@ -65,20 +65,40 @@ namespace Logic.World
             monster_on_map.Add(temp_monster);
         }
 
-        public void SpwanAngel(AngelType angeltype)
+        public void SpwanAngel(Angel angel)
         {
             foreach(Angel temp_angel in prefab_angel)
             {
-                if(temp_angel._head.angelType == angeltype)
+                if(temp_angel._head.angelType == angel._head.angelType)
                 {
                     Angel temp_angel_instance = Instantiate(temp_angel, SpawnPositionAngel, Quaternion.identity);
                     temp_angel_instance.transform.SetParent(transform);
+                    copy_angel(temp_angel_instance, angel);
                     angel_on_map.Add(temp_angel_instance);
                 }
             }
         }
             
-        
+        private void copy_angel(Angel first, Angel second)
+        {
+            first._head.angelType = second._head.angelType;
+            first._head.partType = second._head.partType;
+            first._head.actionsList = second._head.actionsList;
+            first._head.ui = second._head.ui;
+            first._head.change_ui();
+
+            first._torso.angelType = second._torso.angelType;
+            first._torso.partType = second._torso.partType;
+            first._torso.actionsList = second._torso.actionsList;
+            first._torso.ui = second._torso.ui;
+            first._torso.change_ui();
+
+            first._legs.angelType = second._legs.angelType;
+            first._legs.partType = second._legs.partType;
+            first._legs.actionsList = second._legs.actionsList;
+            first._legs.ui = second._legs.ui;
+            first._legs.change_ui();
+        }
 
         private void SpawnInitialBuildings()
         {

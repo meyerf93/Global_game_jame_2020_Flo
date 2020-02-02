@@ -59,6 +59,7 @@ public class Cauldron : MonoBehaviour
 
             addedResources.Add(newIngredient);
             display_ui_ressource(newIngredient,addedResources.Count);
+            display_help_cauldron();
         }
         
     }
@@ -125,7 +126,7 @@ public class Cauldron : MonoBehaviour
 
         addedBody.Add(part);
 
-        //Debug.Log("New "+part.partType+" cooked!");
+        Debug.Log("New "+part.partType+" cooked!");
                        
         display_part_body(part);
         hide_help_body();
@@ -133,28 +134,28 @@ public class Cauldron : MonoBehaviour
     }
     private void found_good_part_ui(BodyPart part)
     {
-        //Debug.Log("try to found the ui");
+        Debug.Log("try to found the ui");
         foreach(Angel temp_angel in famillies_list.Angel)
         {
-            //Debug.Log("part angel type : " + part.angelType);
-            //Debug.Log("part angel type : " + temp_angel._head.angelType);
+            Debug.Log("part angel type : " + part.angelType);
+            Debug.Log("part temp_angel type : " + temp_angel._head.angelType);
 
             if (part.angelType == temp_angel._head.angelType)
             {
-                //Debug.Log("found the same angel type : "+ part.angelType);
+                Debug.Log("found the same angel type : "+ part.angelType);
 
                 switch (part.partType)
                 {
 
                     case BodyPartType.Head:
                         part.ui = temp_angel._head.ui;
-                        break;
+                        return;
                     case BodyPartType.Body:
                         part.ui = temp_angel._torso.ui;
-                        break;
+                        return;
                     case BodyPartType.Foot:
                         part.ui = temp_angel._legs.ui;
-                        break;
+                        return;
                 }
                 //Debug.Log("found the same body part " + part.partType);
 
@@ -186,6 +187,39 @@ public class Cauldron : MonoBehaviour
         }
     }
 
+    public void cheat_2()
+    {
+        DepositResource(ResourceType.STONE);
+        DepositResource(ResourceType.WATER);
+        DepositResource(ResourceType.STONE);
+        CookBodyPart();
+
+        DepositResource(ResourceType.STONE);
+        DepositResource(ResourceType.WATER);
+        DepositResource(ResourceType.WATER);
+        CookBodyPart();
+
+        DepositResource(ResourceType.WATER);
+        DepositResource(ResourceType.STONE);
+        DepositResource(ResourceType.STONE);
+    }
+    public void cheat()
+    {
+        DepositResource(ResourceType.STONE);
+        DepositResource(ResourceType.WATER);
+        DepositResource(ResourceType.WATER);
+        CookBodyPart();
+
+        DepositResource(ResourceType.STONE);
+        DepositResource(ResourceType.STONE);
+        DepositResource(ResourceType.WATER);
+        CookBodyPart();
+
+        DepositResource(ResourceType.WATER);
+        DepositResource(ResourceType.STONE);
+        DepositResource(ResourceType.WATER);
+    }
+
     private void hide_part_body()
     {
         Color temp = new Color(255, 255, 255, 0);
@@ -214,7 +248,7 @@ public class Cauldron : MonoBehaviour
         }
 
         newAngel.SetBodyParts(CurrentHead, CurrentTorso, CurrentLeg);
-        worldManager.SpwanAngel(newAngel._head.angelType);
+        worldManager.SpwanAngel(newAngel);
 
         //Debug.Log("create angel ");
         addedBody.Clear();

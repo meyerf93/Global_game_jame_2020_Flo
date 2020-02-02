@@ -12,10 +12,16 @@ public class BodyPart : MonoBehaviour
     public AngelType angelType;
     public List<BuildingType> actionsList;
     public Sprite ui;
+    private SpriteRenderer renderer_img;
+
     private void Awake()
     {
+        renderer_img = gameObject.GetComponent<SpriteRenderer>();
         actionsList = new List<BuildingType>();
     }
 
-    
+    public void change_ui()
+    {
+        renderer_img.sprite = ui;
+    }
 }

@@ -13,7 +13,7 @@ namespace Logic.Creatures.Parts
         // une créature (angel) associée, et des actions à réaliser (qui seront additionnées
         // lorsque la créature sera assemblée.
 
-        public int[] _angelTypeCounter = new int[1];
+        public int[] _angelTypeCounter = new int[2];
         public int[] _actionsCounter = new int[3];
         public int[] _partCounter = new int[3];
         
@@ -76,8 +76,8 @@ namespace Logic.Creatures.Parts
 
             switch (minIndex)
             {
-                case 1: return AngelType.Nayade;
-                case 2: return AngelType.Treant;
+                case 1: return AngelType.Treant;
+                case 2: return AngelType.Nayade;
                 default: return AngelType.Fairy;
             }
         }

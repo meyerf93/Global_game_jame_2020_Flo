@@ -47,7 +47,16 @@ public class Player : MonoBehaviour
 
         Controls.Player.Cook_part.performed += _ => CookBodyPart();
         Controls.Player.AssembleBodyParts.performed += _ => AssembleBodyParts();
-
+        Controls.Player.Cheat.performed += _ => cheat();
+        Controls.Player.cheat_2.performed += _ => cheat_2();
+    }
+    private void cheat_2()
+    {
+        cauldron.cheat_2();
+    }
+    private void cheat()
+    {
+        cauldron.cheat();
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
