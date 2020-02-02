@@ -164,6 +164,10 @@ MonoBehaviour:
   monster_on_map: []
   angel_on_map: []
   _scoreBar: {fileID: 0}
+  victorySound: {fileID: 8300000, guid: c6c1b796e91914e5f8965084db5780c7, type: 3}
+  destructionSound: {fileID: 8300000, guid: 15c3979bb027844779eb17f3613f3e5d, type: 3}
+  volume: 1
+  plantingSound: {fileID: 8300000, guid: 640df22e7e7d24b10a546f04585e2723, type: 3}
 --- !u!1001 &647757688
 PrefabInstance:
   m_ObjectHideFlags: 0
