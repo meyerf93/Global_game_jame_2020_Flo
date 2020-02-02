@@ -44,7 +44,7 @@ namespace Logic.World
         public ScoreBar _scoreBar;
 
         // S O U N D
-        [SerializeField] AudioClip popupSound;
+        [SerializeField] AudioClip victorySound;
         [SerializeField] AudioClip destructionSound;
         [SerializeField] AudioClip plantingSound;
         [SerializeField] [Range(0, 1)] float volume = 1f;
@@ -80,7 +80,7 @@ namespace Logic.World
                     Angel temp_angel_instance = Instantiate(temp_angel, SpawnPositionAngel, Quaternion.identity);
                     temp_angel_instance.transform.SetParent(transform);
                     angel_on_map.Add(temp_angel_instance);
-                    AudioSource.PlayClipAtPoint(popupSound, Camera.main.transform.position, volume);
+                    AudioSource.PlayClipAtPoint(victorySound, Camera.main.transform.position, volume);
                 }
             }
         }
