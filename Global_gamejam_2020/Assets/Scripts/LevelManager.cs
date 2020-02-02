@@ -17,6 +17,11 @@ public class LevelManager : MonoBehaviour
         //FindObjectOfType<GameSession>().ResetGame();
     }
 
+    public void LoadGameWon()
+    {
+        SceneManager.LoadScene("Victory");
+    }
+
     public void LoadGameOver()
     {
         StartCoroutine(WaitAndLoad());

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - cauldron_triger
   - Ressource
+  - Tree
   layers:
   - Default
   - TransparentFX

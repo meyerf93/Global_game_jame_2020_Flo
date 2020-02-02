@@ -8,7 +8,7 @@ namespace Logic.World
     public enum BuildingType
     {
         Tree,
-        Pound,
+        Pond,
         Rock
     }
 }
