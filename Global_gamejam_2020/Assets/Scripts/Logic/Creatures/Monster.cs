@@ -14,7 +14,7 @@ public class Monster : Creature
 
     private void Start()
     {
-        worldMap = FindObjectOfType(WorldMap);
+        worldMap = FindObjectOfType<WorldMap>();
     }
 
     private void GoDestroyStuff()
