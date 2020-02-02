@@ -16,7 +16,7 @@ public class Creature : MonoBehaviour
         
     public void Die()
     {
-        //animation ... 
+       Debug.Log($"Creature died...");
         Destroy(gameObject);
     }
         

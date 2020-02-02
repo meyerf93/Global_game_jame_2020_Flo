@@ -36,6 +36,7 @@ namespace Logic.World
         
         public int number_of_resources_on_map = 30;
         public int number_of_initial_buildings = 10;
+        public int number_of_initial_monstesr = 5;
         public List<Monster> monster_on_map;
         public List<Angel> angel_on_map;
         
@@ -54,7 +55,7 @@ namespace Logic.World
             monster_on_map = new List<Monster>();
             SpawnInitialResources();
             SpawnInitialBuildings(); 
-            SpawnMonster();
+            SpawnInitialMonsters();
         }
         
 
@@ -64,13 +65,20 @@ namespace Logic.World
             
         }
 
+        private void SpawnInitialMonsters()
+        {
+            for (int i = 0; i < number_of_initial_monstesr; i++)
+            {
+                SpawnMonster();
+            }
+        }
         private void SpawnMonster()
         {
             Monster temp_monster = Instantiate(prefab_monster, GetRandomVector(), Quaternion.identity);
             temp_monster.transform.SetParent(transform);
             temp_monster.SetWorldMap(this);
+            temp_monster.DestroyNextBuilding();
             monster_on_map.Add(temp_monster);
-            temp_monster.GoDestroyStuff();
         }
 
         public void SpwanAngel(Angel angel)
@@ -180,23 +188,23 @@ namespace Logic.World
             return temp;
         }
 
-        public void DestroyBuilding(Building currentTarget)
+        public void DestroyBuilding(Transform currentTarget)
         {
             AudioSource.PlayClipAtPoint(destructionSound, Camera.main.transform.position, volume);
             Destroy(currentTarget);
             var buildingTag = currentTarget.gameObject.tag;
-            switch (buildingTag)
-            {
-                case "Tree":
-                    _scoreBar.ScoreDecrease(BuildingType.Tree);
-                    break;
-                case "Pond":
-                    _scoreBar.ScoreDecrease(BuildingType.Pond);
-                    break;
-                case "Rock":
-                    _scoreBar.ScoreDecrease(BuildingType.Rock);
-                    break;
-            }
+            // switch (buildingTag)
+            // {
+            //     case "Tree":
+            //         _scoreBar.ScoreDecrease(BuildingType.Tree);
+            //         break;
+            //     case "Pond":
+            //         _scoreBar.ScoreDecrease(BuildingType.Pond);
+            //         break;
+            //     case "Rock":
+            //         _scoreBar.ScoreDecrease(BuildingType.Rock);
+            //         break;
+            // }
         }
     }
 }

@@ -4,6 +4,8 @@ using System.Linq;
 using Logic.World;
 using UnityEngine;
 using Pathfinding;
+using Random = System.Random;
+
 public class Monster : Creature
 {
     public int amount_of_actions = 4;
@@ -11,42 +13,39 @@ public class Monster : Creature
     public Building currentTarget;
     public AIPath AIPath;
     public AIDestinationSetter DestinationSetter;
-    public WorldMap map;
-    public List<Building> buildings;
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        Debug.Log($"Trigger collison with {other}");
-        Destroy(other.gameObject);
-    }
+    private WorldMap map;
+    private Random rand = new Random();
+    
+    private List<Building> buildings = new List<Building>();
 
-    private void Start()
+    private void Awake()
     {
         AIPath = GetComponent<AIPath>();
         DestinationSetter = GetComponent<AIDestinationSetter>();
     }
 
-    public void GoDestroyStuff()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        while (amount_of_actions > 0)
-        //while (true)
+        if (other.CompareTag("Tree") || other.CompareTag("Pond") || other.CompareTag("Rock"))
         {
-            DestroyNextBuilding();
+            Debug.Log($"Trigger collison with {other}");
+            map.DestroyBuilding(other.transform);
+            //Destroy(other.gameObject);
             amount_of_actions--;
+            Die();
         }
-        Die();
     }
-
-
-
+    
     public void DestroyNextBuilding()
     {
 
         if (buildings.Any())
         {
-            
-            //Debug.Log("Evil destroy building!");
-            currentTarget = buildings[0];
-            //DestinationSetter.transform = currentTarget.transform;
+            Debug.Log("Evil destroy building!");
+            int randIdx = rand.Next(0, buildings.Count - 1);
+            currentTarget = buildings[randIdx];
+            DestinationSetter.target = currentTarget.transform;
+
             //GoTo(currentTarget);
             //DestinationSetter.target = currentTarget.transform;
             //map.DestroyBuilding(currentTarget);
