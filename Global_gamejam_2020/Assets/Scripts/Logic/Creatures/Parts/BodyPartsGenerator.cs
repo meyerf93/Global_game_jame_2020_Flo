@@ -45,7 +45,7 @@ namespace Logic.Creatures.Parts
         public BodyPart GetNextBodypart()
         {
             BodyPartType partType = GetNextBodyPart();
-            Debug.Log($"Create {partType} type");
+            //Debug.Log($"Create {partType} type");
             
             BodyPart part = Factory(partType);
             part.actionsList = new List<BuildingType> {GetNextAction()};

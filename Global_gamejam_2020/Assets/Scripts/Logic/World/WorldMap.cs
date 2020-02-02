@@ -84,7 +84,7 @@ namespace Logic.World
         {
             for (int i = 0; i < number_of_initial_buildings; i++)
             {
-                Debug.Log("create a building");
+                //Debug.Log("create a building");
                 SpawnBuilding(BuildingType.Tree);
                 SpawnBuilding(BuildingType.Pond);
             }

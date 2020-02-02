@@ -21,7 +21,6 @@ public class Player : MonoBehaviour
 
     public GameObject display_ressource;
 
-
     InputMaster Controls;
     private string conlision_tag_etected;
 
@@ -158,7 +157,7 @@ public class Player : MonoBehaviour
         if (temp_ressource.grounded == true)
         {
             //If the GameObject's name matches the one you suggest, output this message in the console
-            Debug.Log("Take ressource");
+            //Debug.Log("Take ressource");
             display_prefab(temp_ressource.type);
             Destroy(colision_ressource);
         }
@@ -168,7 +167,7 @@ public class Player : MonoBehaviour
     {
         //If the GameObject's name matches the one you suggest, output this message in the console
         Resource temp_ressource = display_ressource.GetComponent<Resource>();
-        Debug.Log("add super amaizin ingredient : " + temp_ressource.type);
+        //Debug.Log("add super amaizin ingredient : " + temp_ressource.type);
 
         cauldron.DepositResource(temp_ressource.type);
 

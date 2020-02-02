@@ -131,6 +131,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7561578948200110956, guid: b46890964f1f74a4fb27d07d285dd7fe,
         type: 3}
+      propertyPath: famillies_list.Angel.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7561578948200110956, guid: b46890964f1f74a4fb27d07d285dd7fe,
+        type: 3}
       propertyPath: head_case
       value: 
       objectReference: {fileID: 1148115037679273289}
@@ -144,6 +149,12 @@ PrefabInstance:
       propertyPath: foot_case
       value: 
       objectReference: {fileID: 904194480055685287}
+    - target: {fileID: 7561578948200110956, guid: b46890964f1f74a4fb27d07d285dd7fe,
+        type: 3}
+      propertyPath: famillies_list.Angel.Array.data[1]
+      value: 
+      objectReference: {fileID: 5426340022391951661, guid: 4a00bcb1b381e6d43bbf1ed3e8827ca2,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b46890964f1f74a4fb27d07d285dd7fe, type: 3}
 --- !u!4 &1044144532018578997 stripped

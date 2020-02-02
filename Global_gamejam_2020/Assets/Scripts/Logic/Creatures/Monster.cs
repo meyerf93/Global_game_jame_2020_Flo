@@ -9,8 +9,10 @@ public class Monster : Creature
     public int amount_of_actions = 4;
     [SerializeField] WorldMap worldMap;
     public Building currentTarget;
+    private List<Building> list;
     private void Awake()
     {
+        list = new List<Building>();
         GoDestroyStuff();
     }
 
@@ -35,7 +37,7 @@ public class Monster : Creature
     {
         // Identify next building to destroy
 
-        List<Building> list = worldMap.buildingsList;
+        list = worldMap.buildingsList;
         if (list.Any())
         {
             
