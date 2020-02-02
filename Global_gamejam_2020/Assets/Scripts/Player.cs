@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using UnityEngine;
@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
     private Vector3 m_Velocity = Vector3.zero;
 
     private GameObject colision_ressource;
+    private GameObject colision_exit;
     private bool m_FacingRight = false;  // For determining which way the player is currently facing.
     [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  // How much to smooth out the movement
 
@@ -55,28 +56,35 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Ressource"))
         {
-            //Controls.Player.Take_ressource.canceled += _ => add_ingredient(); ;
-            //Controls.Player.Take_ressource.performed += _ => Take_ressource();
+            //Debug.Log("display help");
 
-            //If the GameObject's name matches the one you suggest, output this message in the console
-            //bug.Log("It's Ressource");
             colision_ressource = collision.gameObject;
+            colision_ressource.GetComponent<Resource>().display_help();
             conlision_tag_etected = "Ressource";
         }
         else if (collision.gameObject.CompareTag("cauldron_triger"))
         {
-            //Controls.Player.Take_ressource.canceled += _ => Take_ressource(); ;
-
-
-            //If the GameObject has the same tag as specified, output this message in the console
-            //bug.Log("It's cauldron_triger");
-            //cauldron.AddedIngredients()
+            //Debug.Log("displays help cauldron");
+            cauldron.display_help_cauldron();
             conlision_tag_etected = "cauldron_triger";
         }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
+        if (collision.gameObject.CompareTag("Ressource"))
+        {
+            //Debug.Log("hide help");
+
+            colision_exit = collision.gameObject;
+            colision_exit.GetComponent<Resource>().hide_help();
+        }
+        else if (collision.gameObject.CompareTag("cauldron_triger"))
+        {
+            //Debug.Log("hide help cauldron");
+            cauldron.hide_help_cauldron();
+        }
+
         conlision_tag_etected = "None";
     }
 
@@ -104,16 +112,14 @@ public class Player : MonoBehaviour
 
         if (conlision_tag_etected == "cauldron_triger")
         {
-
             if (temp_ressource.grounded == false)
             {
                 DropResourceInCaldron();
-
             }
         }
         else
         {
-            if (temp_ressource.grounded == true)
+            if (temp_ressource.grounded == false)
             {
                 DropResourceOnTheFloor();
             }

@@ -10,6 +10,9 @@ public class Cauldron : MonoBehaviour
     public RecipeManager _recipeManager;
     public WorldMap worldManager;
     public int max_ingredient = 3;
+
+    public GameObject help_angel;
+    public GameObject help_body;
         
     public Sprite leaf;
     public Sprite stone;
@@ -125,6 +128,8 @@ public class Cauldron : MonoBehaviour
         //Debug.Log("New "+part.partType+" cooked!");
                        
         display_part_body(part);
+        hide_help_body();
+        display_help_cauldron();
     }
     private void found_good_part_ui(BodyPart part)
     {
@@ -220,7 +225,58 @@ public class Cauldron : MonoBehaviour
 
         Destroy(newAngel);
         hide_part_body();
-        //Debug.Log("Create the angel");
+        hide_help_angel();
+    }
+
+    public void display_help_cauldron()
+    {
+        if (addedResources.Count == max_ingredient)
+        {
+            display_help_body();
+        }
+        else
+        {
+            hide_help_body();
+        }
+
+        if(addedBody.Count == max_ingredient)
+        {
+            display_help_angel();
+        }
+        else
+        {
+            hide_help_angel();
+        }
+    }
+
+    public void hide_help_cauldron()
+    {
+        hide_help_body();
+        hide_help_angel();
+    }
+
+    private void hide_help_angel()
+    {
+        help_angel.SetActive(false);
+    }
+    private void display_help_angel()
+    {
+        help_angel.SetActive(true);
+    }
+
+    private void display_help_body()
+    {
+        help_body.SetActive(true);
+    }
+    private void hide_help_body()
+    {
+        help_body.SetActive(false);
+    }
+
+
+    public bool ressource_is_full()
+    {
+        return addedResources.Count == max_ingredient;
     }
          
 }
