@@ -8,7 +8,7 @@ using Logic.Creatures;
 public class Cauldron : MonoBehaviour
 {
     public RecipeManager _recipeManager;
-
+    public WorldMap worldManager;
     public int max_ingredient = 3;
         
     public BodyPart CurrentHead { get; set; }
@@ -33,7 +33,7 @@ public class Cauldron : MonoBehaviour
     private void Awake()
     {
         _recipeManager = gameObject.AddComponent<RecipeManager>();
-        /*DepositResource(ResourceType.LEAF);
+        DepositResource(ResourceType.LEAF);
         DepositResource(ResourceType.STONE);
         DepositResource(ResourceType.WATER);
         CookBodyPart();
@@ -45,7 +45,7 @@ public class Cauldron : MonoBehaviour
         
         DepositResource(ResourceType.WATER);
         DepositResource(ResourceType.STONE);
-        DepositResource(ResourceType.WATER);*/
+        DepositResource(ResourceType.WATER);
         
         
     }
@@ -197,16 +197,17 @@ public class Cauldron : MonoBehaviour
 
     public void AssembleAngel()
     {
-        Debug.Log("Try to assemble angel...");
+        //Debug.Log("Try to assemble angel...");
         if (CurrentHead == null || CurrentTorso == null || CurrentLeg == null) return;
-        var newAngel = gameObject.AddComponent<Angel>();
+        Angel newAngel = gameObject.AddComponent<Angel>();
         newAngel.SetBodyParts(CurrentHead, CurrentTorso, CurrentLeg);
         CurrentHead = null;
         CurrentLeg = null;
         CurrentTorso = null;
 
         // TODO Create new angel
-        Debug.Log("New creature created and ready to fight the devil corruption!");
+        worldManager.SpwanAngel(newAngel._head.angelType);
+        Debug.Log("Create the angel");
     }
          
 }

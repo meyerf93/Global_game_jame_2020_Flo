@@ -136,23 +136,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70b682ac52444e4cbf8f81cc9b79aeca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpawnPositionAngel: {x: 2, y: 2, z: 0}
   prefab_leaf: {fileID: 4784660131293709654, guid: 2c4444355f8cba0419506305a7528e53,
     type: 3}
   prefab_stone: {fileID: 5173701930820470066, guid: 0cf9fb6e3206163479cdd4d223ca03ad,
     type: 3}
   prefab_water: {fileID: 8895015622967595317, guid: 611794bab261b304196bd30b5cfeb9cd,
     type: 3}
-  prefab_tree: {fileID: 6618025967980767492, guid: 63c4fc17dd95936449ebc2581cce39f4,
+  prefab_tree: {fileID: 8368534627828183508, guid: 63c4fc17dd95936449ebc2581cce39f4,
     type: 3}
-  prefab_pond: {fileID: 9157246859313431563, guid: 6b9a1c26fbe784f02b6d2d38f7122abc,
+  prefab_rock: {fileID: 896553334934832057, guid: 17244f2e5ab516c4aafd44b34c80c8d2,
     type: 3}
-  prefab_rock: {fileID: 0}
-  prefab_monster: {fileID: 5632135459183812114, guid: 8ea054a03b6a3c246971acc87e2270cd,
+  prefab_pond: {fileID: 4384685508816607269, guid: 6b9a1c26fbe784f02b6d2d38f7122abc,
     type: 3}
-  resourcesManager: {fileID: 1257096610}
+  prefab_angel:
+  - {fileID: 408744057195498336, guid: cb94e7f9943b31c4cb5e56d03a97f7a7, type: 3}
+  - {fileID: 5426340022391951661, guid: 4a00bcb1b381e6d43bbf1ed3e8827ca2, type: 3}
+  prefab_monster: {fileID: 4039734714248060597, guid: 8ea054a03b6a3c246971acc87e2270cd,
+    type: 3}
   buildingsManager: {fileID: 1181894859}
   buildingsList: []
-  creaturesManager: {fileID: 0}
+  resourcesManager: {fileID: 1257096610}
   monstersManager: {fileID: 1637229801}
   number_of_resources_on_map: 30
   number_of_initial_buildings: 10
+  monster_on_map: []
+  angel_on_map: []
+  _scoreBar: {fileID: 0}

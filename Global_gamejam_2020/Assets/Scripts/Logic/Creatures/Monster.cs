@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using Logic.World;
 using UnityEngine;
@@ -6,7 +8,7 @@ public class Monster : Creature
 {
     public int amount_of_actions = 4;
     [SerializeField] WorldMap worldMap;
-    public GameObject currentTarget;
+    public Building currentTarget;
     private void Awake()
     {
         GoDestroyStuff();
@@ -33,9 +35,10 @@ public class Monster : Creature
     {
         // Identify next building to destroy
 
-        var list = worldMap.buildingsList;
+        List<Building> list = worldMap.buildingsList;
         if (list.Any())
         {
+            
             Debug.Log("Evil destroy building!");
             currentTarget = list[0];
             worldMap.DestroyBuilding(currentTarget);

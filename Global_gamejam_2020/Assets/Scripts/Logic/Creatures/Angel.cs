@@ -7,7 +7,7 @@ using Logic.World;
 [Serializable]
 public class Angel : Creature
 {
-
+    public WorldMap world;
     public BodyPart _head;
     public BodyPart _torso;
     public BodyPart _legs;

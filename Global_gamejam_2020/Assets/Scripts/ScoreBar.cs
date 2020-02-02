@@ -9,7 +9,7 @@ public class ScoreBar : MonoBehaviour
 {
     LevelManager levelManager;
 
-    private Image scoreBarImage;
+    public Image scoreBarImage;
     //private ScoreChange scoreChange;
     private float scorePercent;
     public const int scoreMax = 100;
@@ -25,7 +25,6 @@ public class ScoreBar : MonoBehaviour
 
     private void Awake()
     {
-        scoreBarImage = transform.Find("ScoreBarImg").GetComponent<Image>();
         scoreBarImage.fillAmount = scoreBarValue;
     }
 

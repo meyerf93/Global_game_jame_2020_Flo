@@ -73,6 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01c98398ea4dff748b28c41c521469b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  world: {fileID: 2436377410204819761, guid: e456b094b556e426297bc4fa7cc68ae2, type: 3}
   _head: {fileID: 2693653568152819849}
   _torso: {fileID: 7368427849482075753}
   _legs: {fileID: 8224207177668068997}
