@@ -86,8 +86,6 @@ namespace Logic.World
         }
         public void SpawnNewResource(ResourceType type)
         {
-            //GameObject temp;
-        
             switch(type)
             {
                 case ResourceType.LEAF:
@@ -99,7 +97,6 @@ namespace Logic.World
                 case ResourceType.WATER:
                     Instantiate(prefab_water, GetRandomVector(), Quaternion.identity).transform.SetParent(resourcesManager.transform);
                     break;
-
             }
         }
 
@@ -109,9 +106,7 @@ namespace Logic.World
                 rand.Next(-y_boundary, y_boundary),
                 transform.position.z
             );
-            Debug.Log(temp);
             return temp;
         }
     }
-  
 }
