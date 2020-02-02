@@ -3,26 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using Logic.World;
 using UnityEngine;
-
+using Pathfinding;
 public class Monster : Creature
 {
     public int amount_of_actions = 4;
-    public WorldMap worldMap;
     public Building currentTarget;
-    private List<Building> list;
-    private void Awake()
+    public AIPath AIPath;
+    public AIDestinationSetter DestinationSetter;
+    private WorldMap map;
+    
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        list = new List<Building>();
-        GoDestroyStuff();
+        Debug.Log($"Trigger collison with {other}");
+        Destroy(other.gameObject);
     }
 
- 
-    private void GoDestroyStuff()
+    public void GoDestroyStuff()
     {
         while (amount_of_actions > 0)
         //while (true)
         {
             DestroyNextBuilding();
+            amount_of_actions--;
         }
         Die();
     }
@@ -32,16 +34,25 @@ public class Monster : Creature
     public void DestroyNextBuilding()
     {
 
-        list = worldMap.buildingsList;
-        if (list.Any())
+        var buildings = map.buildingsList;
+        if (buildings.Any())
         {
             
-            Debug.Log("Evil destroy building!");
-            currentTarget = list[0];
-            worldMap.DestroyBuilding(currentTarget);
+            //Debug.Log("Evil destroy building!");
+            currentTarget = buildings[0];
+            //GoTo(currentTarget);
+            //DestinationSetter.target = currentTarget.transform;
+            //map.DestroyBuilding(currentTarget);
         }
         
         // Go to location
         // Destroy building
+    }
+
+     
+
+    public void SetWorldMap(WorldMap worldMap)
+    {
+        map = worldMap;
     }
 }

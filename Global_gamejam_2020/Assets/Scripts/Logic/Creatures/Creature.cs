@@ -20,9 +20,9 @@ public class Creature : MonoBehaviour
         Destroy(gameObject);
     }
         
-    public void GoTo(int X, int Y)
+    protected void GoTo(Vector3 transformPosition)
     {
-
+        
     }
         
 }
