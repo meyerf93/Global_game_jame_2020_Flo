@@ -1,59 +1,82 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using Logic.World;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ScoreBar : MonoBehaviour
 {
+    LevelManager levelManager;
 
     private Image scoreBarImage;
-    private ScoreChange scoreChange;
+    //private ScoreChange scoreChange;
     private float scorePercent;
     public const int scoreMax = 100;
+    float scoreBarValue = .2f;
+    [SerializeField] float treePoints = 1;
+    [SerializeField] float rockPoints = 1;
+    [SerializeField] float pondPoints = 3;
 
+    private void Start()
+    {
+        levelManager = FindObjectOfType<LevelManager>();
+    }
 
     private void Awake()
     {
         scoreBarImage = transform.Find("ScoreBarImg").GetComponent<Image>();
-        //scoreBarImage.fillAmount = .2f;
-        //scoreChange = new ScoreChange();
-        GetScorePercent();
+        scoreBarImage.fillAmount = scoreBarValue;
     }
 
-    private void Update()
+    public void ScoreIncrease(BuildingType type)
     {
-        scoreBarImage.fillAmount = GetScorePercent();
+        Debug.Log("Increase score!");
+        if (type == BuildingType.Tree)
+        {
+            scorePercent += treePoints;
+        }
+        else if (type == BuildingType.Rock)
+        {
+            scorePercent += rockPoints;
+        }
+        else if (type == BuildingType.Pond)
+        {
+            scorePercent += pondPoints;
+        }
+        ScoreCheck();
     }
 
-    public void ScoreIncrease(float scoreIncrease)
+    public void ScoreDecrease(GameObject resource)
     {
-        Debug.Log("Increase score");
-        scorePercent += scoreIncrease;
+        if (resource.name == "Tree")
+        {
+            scorePercent -= treePoints;
+        }
+        else if (resource.name == "Rock")
+        {
+            scorePercent -= rockPoints;
+        }
+        else if (resource.name == "Pond")
+        {
+            scorePercent -= pondPoints;
+        }
+        ScoreCheck();
     }
 
-    public void ScoreDecrease(float scoreDecrease)
+    private void ScoreCheck()
     {
-        scorePercent -= scoreDecrease;
+        if (scorePercent >= scoreMax)
+        {
+            levelManager.LoadGameWon();
+        }
+        else if (scorePercent <= 0)
+        {
+            levelManager.LoadGameOver();
+        }
+
+        scoreBarValue = scorePercent / 100;
+        scoreBarImage.fillAmount = scoreBarValue;
     }
 
-    public float GetScorePercent()
-    {
-        return scorePercent / scoreMax;
-    }
-
-}
-
-public class ScoreChange
-{
-    
-    private float scorePercent;
-
-    //public void ScoreIncrease(float scoreIncrease)
-    //{
-    //    scorePercent += scoreIncrease;
-    //}
-
-    
-
-    
 }

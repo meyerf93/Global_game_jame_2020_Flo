@@ -29,14 +29,9 @@ public class GameSession : MonoBehaviour
     {
         int minutes = (int)time / 60;
         int seconds = (int)time - 60 * minutes;
-        Debug.Log(string.Format("{0:00}:{1:00}", minutes, seconds));
+        //Debug.Log(string.Format("{0:00}:{1:00}", minutes, seconds));
         return string.Format("{0:00}:{1:00}", minutes, seconds);
     }
-
-    //public string GetTime()
-    //{
-    //    //FormatTime(currentTime);
-    //}
 
     public void Update()
     {

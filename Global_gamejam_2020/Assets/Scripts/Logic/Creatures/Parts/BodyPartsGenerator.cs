@@ -124,7 +124,7 @@ namespace Logic.Creatures.Parts
 
             switch (minIndex)
             {
-                case 1: return BuildingType.Pound;
+                case 1: return BuildingType.Pond;
                 case 2: return BuildingType.Rock;
                 default: return BuildingType.Tree;
             }

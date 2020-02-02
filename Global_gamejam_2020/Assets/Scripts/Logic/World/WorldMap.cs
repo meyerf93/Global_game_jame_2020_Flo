@@ -15,7 +15,7 @@ namespace Logic.World
         public GameObject prefab_water;
         
         public GameObject prefab_tree;
-        public GameObject prefab_rock;
+        //public GameObject prefab_rock;
         public GameObject prefab_pond;
         
         public GameObject prefab_angel;
@@ -27,7 +27,6 @@ namespace Logic.World
         public GameObject resourcesManager;
         public GameObject monstersManager;
         
-        
         private Random rand = new Random();
         private int x_boundary = 25;
         private int y_boundary = 15;
@@ -37,11 +36,20 @@ namespace Logic.World
 
         public int CorruptionLevel { get; set; }
 
+        public ScoreBar _scoreBar;
+
         private void Awake()
         {
             SpawnInitialResources();
             SpawnInitialBuildings();
             SpawnMonster();
+            
+        }
+
+        private void Start()
+        {
+            //_scoreBar = FindObjectOfType<ScoreBar>();
+            
         }
 
         private void SpawnMonster()
@@ -56,7 +64,7 @@ namespace Logic.World
             for (int i = 0; i < number_of_initial_buildings; i++)
             {    
                 SpawnBuilding(BuildingType.Tree);
-                SpawnBuilding(BuildingType.Pound);
+                SpawnBuilding(BuildingType.Pond);
             }
         }
 
@@ -69,11 +77,16 @@ namespace Logic.World
                     newBuilding.transform.SetParent(buildingsManager.transform);
                     buildingsList.Add(newBuilding);
                     break; 
-                case BuildingType.Pound:
+                case BuildingType.Pond:
                     Instantiate(prefab_pond, GetRandomVector(), Quaternion.identity).transform.SetParent(buildingsManager.transform);
-                    break; 
-                    
+                    break;
+
+                case BuildingType.Rock:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }
+            _scoreBar.ScoreIncrease(type);
         }
         private void SpawnInitialResources()
         {
