@@ -44,6 +44,12 @@ namespace Logic.World
 
         public ScoreBar _scoreBar;
 
+        // S O U N D
+        [SerializeField] AudioClip victorySound;
+        [SerializeField] AudioClip destructionSound;
+        [SerializeField] AudioClip plantingSound;
+        [SerializeField] [Range(0, 1)] float volume = 1f;
+
         private void Awake()
         {
             monster_on_map = new List<Monster>();
@@ -85,6 +91,7 @@ namespace Logic.World
                     temp_angel_instance.transform.SetParent(transform);
                     copy_angel(temp_angel_instance, angel);
                     angel_on_map.Add(temp_angel_instance);
+                    AudioSource.PlayClipAtPoint(victorySound, Camera.main.transform.position, volume);
                 }
             }
         }
@@ -123,6 +130,7 @@ namespace Logic.World
         private void SpawnBuilding(BuildingType type)
         {
             Building newBuilding;
+            AudioSource.PlayClipAtPoint(plantingSound, Camera.main.transform.position, volume);
             switch ( type)
             {
                 case BuildingType.Tree:
@@ -182,6 +190,7 @@ namespace Logic.World
 
         public void DestroyBuilding(Building currentTarget)
         {
+            AudioSource.PlayClipAtPoint(destructionSound, Camera.main.transform.position, volume);
             Destroy(currentTarget);
             var buildingTag = currentTarget.gameObject.tag;
             switch (buildingTag)

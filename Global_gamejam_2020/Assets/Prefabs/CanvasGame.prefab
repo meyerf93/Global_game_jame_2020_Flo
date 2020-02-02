@@ -236,6 +236,33 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3826602643984715228}
     m_Modifications:
+    - target: {fileID: 8506039510352752528, guid: fe717642bdf53b847aca17934d82ff08,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d12f035ba208e4aa599c7466aab64fd6,
+        type: 3}
+    - target: {fileID: 8506039510789360938, guid: fe717642bdf53b847aca17934d82ff08,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 253cc69d93d9b44e3ae98f44f0f93b7e,
+        type: 3}
+    - target: {fileID: 8506039510789360938, guid: fe717642bdf53b847aca17934d82ff08,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8506039510789360938, guid: fe717642bdf53b847aca17934d82ff08,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8506039510789360938, guid: fe717642bdf53b847aca17934d82ff08,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8506039511114623740, guid: fe717642bdf53b847aca17934d82ff08,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -9,6 +9,7 @@ using Random = System.Random;
 public class Monster : Creature
 {
     public int amount_of_actions = 4;
+
     public Building currentTarget;
     public AIPath AIPath;
     public AIDestinationSetter DestinationSetter;
@@ -35,7 +36,6 @@ public class Monster : Creature
     public void DestroyNextBuilding()
     {
 
-        var buildings = map.buildingsList;
         if (buildings.Any())
         {
             
@@ -58,5 +58,7 @@ public class Monster : Creature
     public void SetWorldMap(WorldMap worldMap)
     {
         map = worldMap;
+        buildings = map.buildingsList;
+
     }
 }

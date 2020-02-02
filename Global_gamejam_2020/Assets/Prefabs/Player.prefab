@@ -62,6 +62,8 @@ MonoBehaviour:
   stone: {fileID: 21300000, guid: ee7e97abb8424475298bd7b8a0da5897, type: 3}
   water: {fileID: 21300000, guid: d91ab7dad6557473587c8cd684ffdc3d, type: 3}
   display_ressource: {fileID: 3297675569170615547}
+  pickupSound: {fileID: 8300000, guid: 6fa4976b70f194fd4b3bd3aacae332f5, type: 3}
+  volume: 1
   m_MovementSmoothing: 0.05
 --- !u!114 &886940607115608332
 MonoBehaviour:
@@ -341,3 +343,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   grounded: 1
+  help: {fileID: 0}
