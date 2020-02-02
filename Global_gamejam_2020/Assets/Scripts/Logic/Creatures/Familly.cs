@@ -6,6 +6,6 @@ namespace Logic.Creatures
     [Serializable]
     public class Familly
     {
-        public Angel Angel;
+        public List<Angel> Angel = new List<Angel>();
     }
 }

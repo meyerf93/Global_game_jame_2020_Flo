@@ -8,12 +8,12 @@ using Logic.World;
 public class Angel : Creature
 {
 
-    public HeadPart _head = new HeadPart();
-    public TorsoPart _torso = new TorsoPart();
-    public LegPart _legs = new LegPart();
+    public BodyPart _head;
+    public BodyPart _torso;
+    public BodyPart _legs;
     private List<BuildingType> _actionsList = new List<BuildingType>();
     
-    public void SetBodyParts(HeadPart head, TorsoPart torso, LegPart legs)
+    public void SetBodyParts(BodyPart head, BodyPart torso, BodyPart legs)
     {
         _head = head;
         _torso = torso;
@@ -21,7 +21,7 @@ public class Angel : Creature
         BuildActionsList(head, torso, legs);
     }
 
-    private void BuildActionsList(HeadPart head, TorsoPart torso, LegPart legs)
+    private void BuildActionsList(BodyPart head, BodyPart torso, BodyPart legs)
     {
         // Aggregate actions from parts
         _actionsList.AddRange(head.actionsList);

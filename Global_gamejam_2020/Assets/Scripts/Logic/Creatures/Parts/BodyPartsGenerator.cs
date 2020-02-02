@@ -13,7 +13,7 @@ namespace Logic.Creatures.Parts
         // une créature (angel) associée, et des actions à réaliser (qui seront additionnées
         // lorsque la créature sera assemblée.
 
-        public int[] _angelTypeCounter = new int[9];
+        public int[] _angelTypeCounter = new int[1];
         public int[] _actionsCounter = new int[3];
         public int[] _partCounter = new int[3];
         
@@ -44,29 +44,22 @@ namespace Logic.Creatures.Parts
 
         public BodyPart GetNextBodypart()
         {
-            var partType = GetNextBodyPart();
+            BodyPartType partType = GetNextBodyPart();
             Debug.Log($"Create {partType} type");
             
-            var part = Factory(partType);
+            BodyPart part = Factory(partType);
             part.actionsList = new List<BuildingType> {GetNextAction()};
             part.angelType = GetNextAngelType();
             return part;
         }
 
 
-        private BodyPart Factory(string partType)
+        private BodyPart Factory(BodyPartType partType)
         {
-            switch (partType)
-            {
-                case "head" :
-                    return gameObject.AddComponent<HeadPart>();
-                case "torso":
-                    return gameObject.AddComponent<TorsoPart>();
-                case "leg":
-                    return gameObject.AddComponent<LegPart>();
-            }
-
-            return null;
+            BodyPart temp_body_part;
+            temp_body_part = gameObject.AddComponent<BodyPart>();
+            temp_body_part.partType = partType;
+            return temp_body_part;
         }
 
         private AngelType GetNextAngelType()

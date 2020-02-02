@@ -11,9 +11,9 @@ public class Cauldron : MonoBehaviour
 
     public int max_ingredient = 3;
         
-    public HeadPart CurrentHead { get; set; }
-    public TorsoPart CurrentTorso { get; set; }
-    public LegPart CurrentLeg { get; set; }
+    public BodyPart CurrentHead { get; set; }
+    public BodyPart CurrentTorso { get; set; }
+    public BodyPart CurrentLeg { get; set; }
 
     public Sprite leaf;
     public Sprite stone;
@@ -27,12 +27,11 @@ public class Cauldron : MonoBehaviour
     public SpriteRenderer body_case;
     public SpriteRenderer foot_case;
 
-    public List<Familly> famillies_list = new List<Familly>();
+    public Familly famillies_list;
     public List<ResourceType> addedResources = new List<ResourceType>();
 
     private void Awake()
     {
-        famillies_list = new List<Familly>();
         _recipeManager = gameObject.AddComponent<RecipeManager>();
         /*DepositResource(ResourceType.LEAF);
         DepositResource(ResourceType.STONE);
@@ -52,16 +51,20 @@ public class Cauldron : MonoBehaviour
     }
     public void DepositResource(ResourceType newIngredient)
     {
+        //Debug.Log("number of ressource added : " + addedResources.Count);
+        //Debug.Log("max ingredient : " + max_ingredient);
         if (addedResources.Count < max_ingredient)
         {
+            //Debug.Log("New resource added to caldron! : " + newIngredient);
+
             addedResources.Add(newIngredient);
             display_ui_ressource(newIngredient,addedResources.Count);
         }
         
-        Debug.Log("New resource added to caldron!");
     }
     void display_ui_ressource(ResourceType newIngredient, int element)
     {
+        //Debug.Log("new ingredient to display : " + newIngredient);
         Sprite temp_sprite = first_case.sprite;
         switch (newIngredient)
         {
@@ -112,57 +115,84 @@ public class Cauldron : MonoBehaviour
         
         if (addedResources.Count < 3) return;
         Debug.Log("Try to cook part...");
-        var part = _recipeManager.GetBodyPart(
+        BodyPart part = _recipeManager.GetBodyPart(
             addedResources[0],
             addedResources[1],
             addedResources[2]);
         addedResources.Clear();
+        found_good_part_ui(part);
         hide_ui_resosurce();
-        var headPart = part as HeadPart;
-        if (headPart != null)
+
+        switch (part.partType)
         {
-            CurrentHead = headPart;
-            Debug.Log("New head cooked!");
+            case BodyPartType.Head:
+                CurrentHead = part;
+                break;
+            case BodyPartType.Body:
+                CurrentTorso = part;
+                break;
+            case BodyPartType.Foot:
+                CurrentLeg = part;
+                break;
         }
 
-        var torsoPart = part as TorsoPart;
-        if (torsoPart != null)
-        {
-            CurrentTorso = (TorsoPart) part;
-            Debug.Log("New torso cooked!");
-        }
-
-        var legPart = part as LegPart;
-        if (legPart != null)
-        {
-            CurrentLeg = (LegPart) part;
-            Debug.Log("New leg cooked!");
-        }
-        display_part_body(CurrentLeg);
-
-        //set the ui and the sprit from list part.ui = ,,,
+         Debug.Log("New "+part.partType+" cooked!");
+                       
+         display_part_body(part);
     }
+    private void found_good_part_ui(BodyPart part)
+    {
+        Debug.Log("try to found the ui");
+        foreach(Angel temp_angel in famillies_list.Angel)
+        {
+            Debug.Log("part angel type : " + part.angelType);
+            Debug.Log("part angel type : " + temp_angel._head.angelType);
 
+            if (part.angelType == temp_angel._head.angelType)
+            {
+                Debug.Log("found the same angel type : "+ part.angelType);
+
+                switch (part.partType)
+                {
+
+                    case BodyPartType.Head:
+                        part.ui = temp_angel._head.ui;
+                        break;
+                    case BodyPartType.Body:
+                        part.ui = temp_angel._torso.ui;
+                        break;
+                    case BodyPartType.Foot:
+                        part.ui = temp_angel._legs.ui;
+                        break;
+                }
+                Debug.Log("found the same body part " + part.partType);
+
+            }
+
+        }
+    }
     private void display_part_body(BodyPart bodypart)
     {
         Color temp = new Color(255, 255, 255, 255);
+        Debug.Log("body part angel type : " + bodypart.angelType);
+        Debug.Log("body part body type : " + bodypart.partType);
 
+        Debug.Log("ui sprite : " + bodypart.ui);
         switch (bodypart.partType)
         {
-            case "head":
+            case BodyPartType.Head:
                 head_case.sprite = bodypart.ui;
                 head_case.color = temp;
                 break;
-            case "torso":
+            case BodyPartType.Body:
                 body_case.sprite = bodypart.ui;
                 body_case.color = temp;
                 break;
-            case "leg":
+            case BodyPartType.Foot:
                 foot_case.sprite = bodypart.ui;
                 foot_case.color = temp;
                 break;
         }
-
     }
 
     public void AssembleAngel()

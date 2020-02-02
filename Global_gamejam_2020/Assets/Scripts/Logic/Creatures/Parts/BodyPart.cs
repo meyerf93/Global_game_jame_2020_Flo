@@ -6,15 +6,15 @@ using Logic.World;
 using UnityEngine;
 
 [Serializable]
-public abstract class BodyPart : MonoBehaviour
+public class BodyPart : MonoBehaviour
 {
-    public string partType;
+    public BodyPartType partType;
     public AngelType angelType;
-    public List<BuildingType> actionsList = new List<BuildingType>();
+    public List<BuildingType> actionsList;
     public Sprite ui;
     private void Awake()
     {
-        
+        actionsList = new List<BuildingType>();
     }
 
     
