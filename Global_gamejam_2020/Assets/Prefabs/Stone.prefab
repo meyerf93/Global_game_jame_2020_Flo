@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5173701930820470076}
   - component: {fileID: 5173701930820470077}
   - component: {fileID: 5173701930820470067}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Stone
   m_TagString: Ressource
   m_Icon: {fileID: 0}
