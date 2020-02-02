@@ -7,7 +7,7 @@ using UnityEngine;
 public class Monster : Creature
 {
     public int amount_of_actions = 4;
-    [SerializeField] WorldMap worldMap;
+    public WorldMap worldMap;
     public Building currentTarget;
     private List<Building> list;
     private void Awake()
@@ -16,11 +16,7 @@ public class Monster : Creature
         GoDestroyStuff();
     }
 
-    private void Start()
-    {
-        worldMap = FindObjectOfType<WorldMap>();
-    }
-
+ 
     private void GoDestroyStuff()
     {
         while (amount_of_actions > 0)
@@ -35,7 +31,6 @@ public class Monster : Creature
 
     public void DestroyNextBuilding()
     {
-        // Identify next building to destroy
 
         list = worldMap.buildingsList;
         if (list.Any())

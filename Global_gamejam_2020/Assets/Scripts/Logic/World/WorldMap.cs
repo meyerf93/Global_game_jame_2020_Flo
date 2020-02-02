@@ -87,6 +87,7 @@ namespace Logic.World
                 //Debug.Log("create a building");
                 SpawnBuilding(BuildingType.Tree);
                 SpawnBuilding(BuildingType.Pond);
+                SpawnBuilding(BuildingType.Rock);
             }
         }
 
