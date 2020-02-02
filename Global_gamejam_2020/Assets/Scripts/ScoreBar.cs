@@ -31,7 +31,6 @@ public class ScoreBar : MonoBehaviour
 
     public void ScoreIncrease(BuildingType type)
     {
-        Debug.Log("Increase score!");
         if (type == BuildingType.Tree)
         {
             scorePercent += treePoints;
@@ -47,20 +46,21 @@ public class ScoreBar : MonoBehaviour
         ScoreCheck();
     }
 
-    public void ScoreDecrease(GameObject resource)
+    public void ScoreDecrease(BuildingType type)
     {
-        if (resource.name == "Tree")
+        if (type == BuildingType.Tree)
         {
             scorePercent -= treePoints;
         }
-        else if (resource.name == "Rock")
+        else if (type == BuildingType.Rock)
         {
             scorePercent -= rockPoints;
         }
-        else if (resource.name == "Pond")
+        else if (type == BuildingType.Pond)
         {
             scorePercent -= pondPoints;
         }
+        Debug.Log("Score decreased!");
         ScoreCheck();
     }
 
