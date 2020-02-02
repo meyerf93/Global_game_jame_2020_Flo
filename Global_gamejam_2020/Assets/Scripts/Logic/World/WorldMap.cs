@@ -90,8 +90,7 @@ namespace Logic.World
                     Angel temp_angel_instance = Instantiate(temp_angel, SpawnPositionAngel, Quaternion.identity);
                     temp_angel_instance.transform.SetParent(transform);
                     copy_angel(temp_angel_instance, angel);
-                    buildingsList.Add(temp_angel_instance);
-
+                    angel_on_map.Add(temp_angel_instance);
                     AudioSource.PlayClipAtPoint(victorySound, Camera.main.transform.position, volume);
                 }
             }
