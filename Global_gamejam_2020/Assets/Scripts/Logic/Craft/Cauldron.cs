@@ -33,7 +33,7 @@ public class Cauldron : MonoBehaviour
     private void Awake()
     {
         _recipeManager = gameObject.AddComponent<RecipeManager>();
-        DepositResource(ResourceType.LEAF);
+        /*DepositResource(ResourceType.LEAF);
         DepositResource(ResourceType.STONE);
         DepositResource(ResourceType.WATER);
         CookBodyPart();
@@ -45,7 +45,7 @@ public class Cauldron : MonoBehaviour
         
         DepositResource(ResourceType.WATER);
         DepositResource(ResourceType.STONE);
-        DepositResource(ResourceType.WATER);
+        DepositResource(ResourceType.WATER);*/
         
         
     }
