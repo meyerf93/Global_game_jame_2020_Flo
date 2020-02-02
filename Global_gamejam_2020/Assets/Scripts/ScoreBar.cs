@@ -42,7 +42,7 @@ public class ScoreBar : MonoBehaviour
         {
             scorePercent += pondPoints;
         }
-
+        
         ScoreCheck();
     }
 
