@@ -188,23 +188,23 @@ namespace Logic.World
             return temp;
         }
 
-        public void DestroyBuilding(Building currentTarget)
+        public void DestroyBuilding(Transform currentTarget)
         {
             AudioSource.PlayClipAtPoint(destructionSound, Camera.main.transform.position, volume);
             Destroy(currentTarget);
             var buildingTag = currentTarget.gameObject.tag;
-            switch (buildingTag)
-            {
-                case "Tree":
-                    _scoreBar.ScoreDecrease(BuildingType.Tree);
-                    break;
-                case "Pond":
-                    _scoreBar.ScoreDecrease(BuildingType.Pond);
-                    break;
-                case "Rock":
-                    _scoreBar.ScoreDecrease(BuildingType.Rock);
-                    break;
-            }
+            // switch (buildingTag)
+            // {
+            //     case "Tree":
+            //         _scoreBar.ScoreDecrease(BuildingType.Tree);
+            //         break;
+            //     case "Pond":
+            //         _scoreBar.ScoreDecrease(BuildingType.Pond);
+            //         break;
+            //     case "Rock":
+            //         _scoreBar.ScoreDecrease(BuildingType.Rock);
+            //         break;
+            // }
         }
     }
 }

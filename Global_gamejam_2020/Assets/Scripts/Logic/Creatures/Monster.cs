@@ -15,6 +15,8 @@ public class Monster : Creature
     public AIDestinationSetter DestinationSetter;
     private WorldMap map;
     private Random rand = new Random();
+    
+    private List<Building> buildings = new List<Building>();
 
     private void Awake()
     {
@@ -27,7 +29,8 @@ public class Monster : Creature
         if (other.CompareTag("Tree") || other.CompareTag("Pond") || other.CompareTag("Rock"))
         {
             Debug.Log($"Trigger collison with {other}");
-            Destroy(other.gameObject);
+            map.DestroyBuilding(other.transform);
+            //Destroy(other.gameObject);
             amount_of_actions--;
             Die();
         }
@@ -38,7 +41,6 @@ public class Monster : Creature
 
         if (buildings.Any())
         {
-            
             Debug.Log("Evil destroy building!");
             int randIdx = rand.Next(0, buildings.Count - 1);
             currentTarget = buildings[randIdx];
