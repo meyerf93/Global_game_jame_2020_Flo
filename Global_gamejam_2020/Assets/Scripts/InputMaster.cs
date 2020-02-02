@@ -338,7 +338,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""b013a7d6-8d71-449d-815a-ee691f747c2b"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""path"": ""<XInputController>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
