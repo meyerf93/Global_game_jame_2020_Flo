@@ -6,5 +6,5 @@ public class Resource : MonoBehaviour
 {
     public ResourceType type;
     public bool grounded = true;
-    
+
 }

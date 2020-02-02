@@ -21,6 +21,9 @@ public class Player : MonoBehaviour
 
     public GameObject display_ressource;
 
+    [SerializeField] AudioClip pickupSound;
+    [SerializeField] [Range(0, 1)] float volume = 1f;
+
 
     InputMaster Controls;
     private string conlision_tag_etected;
@@ -159,6 +162,7 @@ public class Player : MonoBehaviour
         {
             //If the GameObject's name matches the one you suggest, output this message in the console
             Debug.Log("Take ressource");
+            AudioSource.PlayClipAtPoint(pickupSound, Camera.main.transform.position, volume);
             display_prefab(temp_ressource.type);
             Destroy(colision_ressource);
         }
