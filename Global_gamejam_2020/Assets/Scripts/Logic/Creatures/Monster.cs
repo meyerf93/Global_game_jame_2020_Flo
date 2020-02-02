@@ -4,6 +4,8 @@ using System.Linq;
 using Logic.World;
 using UnityEngine;
 using Pathfinding;
+using Random = System.Random;
+
 public class Monster : Creature
 {
     public int amount_of_actions = 4;
@@ -11,26 +13,25 @@ public class Monster : Creature
     public AIPath AIPath;
     public AIDestinationSetter DestinationSetter;
     private WorldMap map;
-    
+    private Random rand = new Random();
+
+    private void Awake()
+    {
+        AIPath = GetComponent<AIPath>();
+        DestinationSetter = GetComponent<AIDestinationSetter>();
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log($"Trigger collison with {other}");
-        Destroy(other.gameObject);
-    }
-
-    public void GoDestroyStuff()
-    {
-        while (amount_of_actions > 0)
-        //while (true)
+        if (other.CompareTag("Tree") || other.CompareTag("Pond") || other.CompareTag("Rock"))
         {
-            DestroyNextBuilding();
+            Debug.Log($"Trigger collison with {other}");
+            Destroy(other.gameObject);
             amount_of_actions--;
+            Die();
         }
-        Die();
     }
-
-
-
+    
     public void DestroyNextBuilding()
     {
 
@@ -38,8 +39,11 @@ public class Monster : Creature
         if (buildings.Any())
         {
             
-            //Debug.Log("Evil destroy building!");
-            currentTarget = buildings[0];
+            Debug.Log("Evil destroy building!");
+            int randIdx = rand.Next(0, buildings.Count - 1);
+            currentTarget = buildings[randIdx];
+            DestinationSetter.target = currentTarget.transform;
+
             //GoTo(currentTarget);
             //DestinationSetter.target = currentTarget.transform;
             //map.DestroyBuilding(currentTarget);
